@@ -1,0 +1,95 @@
+//nested selector
+.alert,
+.warning {
+  ul,
+  p {
+    margin-right: 0;
+  }
+}
+
+//interpolation
+$name: foo;
+$attr: border;
+p.#{$name} {
+  #{$attr}-color: blue;
+}
+
+//List
+$list: "10px 20px 30px";
+
+//@if and if()
+$type: audi;
+p {
+  @if $type == benz {
+    color: red;
+  } @else if $type == mahindra {
+    color: blue;
+  } @else {
+    color: if(1 + 1 == 2, green, black);
+  }
+}
+
+//@for
+@for $i from 1 to 5 {
+  .p#{$i} {
+    padding-left: $i * 10px;
+  }
+}
+
+//@each
+@each $header, $color in (h1: red, h2: green, h3: blue) {
+  #{$header} {
+    color: $color;
+  }
+}
+
+//@while
+$i: 30;
+@while $i > 0 {
+  .paddding-#{$i} {
+    padding-left: 1px * $i;
+  }
+  $i: $i - 10;
+}
+
+//@mixin
+@mixin bordered($color, $width: 4px) {
+  color: $color;
+  border: $width solid black;
+}
+
+$var: red, 2px;
+
+.style {
+  @include bordered($color: red, $width: 2px); //keyword arguments
+  @include bordered($var...); //variable length arguments
+}
+
+//@content
+@mixin bordered($color) {
+  color: $color;
+  @content;
+}
+.style-content {
+  @include bordered(red) {
+    border: 4px solid black;
+  }
+}
+
+//@function
+@function add_one($n) {
+  @return $n + 1;
+}
+
+.style-function {
+  border: add_one(1px) solid black;
+}
+
+//@extend
+.foo {
+    color: red;
+}
+.bar {
+    @extend .foo;
+    margin:auto;
+}

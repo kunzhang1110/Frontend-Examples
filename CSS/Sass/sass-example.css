@@ -1,0 +1,80 @@
+.alert ul,
+.alert p,
+.warning ul,
+.warning p {
+  margin-right: 0;
+}
+
+p.foo, p.bar {
+  border-color: blue;
+}
+
+p {
+  color: green;
+}
+
+.p1 {
+  padding-left: 10px;
+}
+
+.p2 {
+  padding-left: 20px;
+}
+
+.p3 {
+  padding-left: 30px;
+}
+
+.p4 {
+  padding-left: 40px;
+}
+
+h1 {
+  color: red;
+}
+
+h2 {
+  color: green;
+}
+
+h3 {
+  color: blue;
+}
+
+.paddding-30 {
+  padding-left: 30px;
+}
+
+.paddding-20 {
+  padding-left: 20px;
+}
+
+.paddding-10 {
+  padding-left: 10px;
+}
+
+.style {
+  color: red;
+  border: 2px solid black;
+  color: red;
+  border: 2px solid black;
+}
+
+.style-content {
+  color: red;
+  border: 4px solid black;
+}
+
+.style-function {
+  border: 2px solid black;
+}
+
+.foo, .bar {
+  color: red;
+}
+
+.bar {
+  margin: auto;
+}
+
+/*# sourceMappingURL=sass-example.css.map */

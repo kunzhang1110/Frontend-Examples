@@ -1,0 +1,316 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Basics"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## array.splice()"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "var fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\r\nfruits.splice(2, 1, \"Lemon\", \"Kiwi\");\r\nconsole.log(fruits)\r\n//splice adds \"Lemon\", \"Kiwi\"  after 2nd element and remove 1 element \"Apple\"."
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Spread Syntax"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const numbers = [1, 2, 3];\r\n\r\n//function call\r\nMath.max.apply(null, numbers); //\r\nMath.max(...numbers); // same as Math.max(1, 2, 3)\r\n\r\n//array\r\nvar numbers_all = [0, ...numbers, 4, 5] //same as [ 0, 1, 2, 3, 4, 5 ]\r\n\r\n//object literal\r\nvar obj1 = {x: 1, y: 2};\r\nvar obj2 = {y:3, z: 4};\r\nvar clonedObj = {...obj1}; // same as { x: 1, y: 2 }\r\nvar mergedObj = {...obj1, ... obj2}; //same as { x: 1, y:2, y: 3, z: 4 }\r\nconsole.log(mergedObj) //{x: 1, y: 3, z: 4 }\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ x: 1, y: 3, z: 4 }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Destructuring Assignment"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Array Destructuring"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//swapping variables\r\nvar a = 1;\r\nvar b = 3;\r\n\r\n[a, b] = [b, a];\r\nconsole.log(`${a} ${b}`)  // 3 1\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//rest '...'\r\nvar [g, ...restArray] = [1, 2, 3, 4]\r\n\r\nconsole.log(max(rest));  // 2,3,4\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "NaN",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Object Destructuring"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//basic assignment\r\nlet o = {p: 42, q: true};\r\nlet {p, q} = o;\r\nconsole.log(`${p} ${q}`)  // 42 true\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "42 true",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//assigning new names\r\nlet o1 = {p: 42, q: true};\r\nvar {p: foo, q: bar} = o1;\r\nconsole.log(`${foo} ${bar}`)  // 42 true"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "42 true",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//Unpacking fields from objects passed as a function parameter\r\nconst user = {\r\n    displayName: 'kz',\r\n    fullName: {\r\n        firstName: 'Kun',\r\n        lastName: 'Zhang'\r\n    }\r\n}\r\n\r\nfunction unpack({displayName, fullName: {firstName: name}}) {\r\n    return `${displayName} is ${name}`;\r\n}\r\nconsole.log(unpack(user));  // \"kz is Kun\"   \r\n  "
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "kz is Kun",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Hoisting\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "x=5\r\nconsole.log(x) // 5\r\nvar x; //declare after usage, var x is moved to the top\r\n\r\nconsole.log(y) //undefined\r\nvar y = 7 //y is initialized, var y = 7 is not moved to the top"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "undefined",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Object"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Function"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Closure"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let val = 1;\r\nconst closure1 = function() {\r\n    console.log(val);\r\n    val = 2;\r\n};\r\nval = 3;\r\nconst closure2 = function() {\r\n    console.log(val);\r\n};\r\nclosure1(); //3\r\nclosure2(); //2"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "3",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function makeMultiplier(multiplier) {\r\n    return function(x) {\r\n        return multiplier * x;\r\n    };\r\n}\r\nvar doubleAll = makeMultiplier(2);\r\nconsole.log(doubleAll(10)); // 20\r\n\r\ndoubleAll(10)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "20",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Function Object"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//Function Object constructed by Function constructor\r\nvar add = new Function(\"a\", \"b\", \"return a + b;\");\r\nconsole.log(add(1,2))"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "3",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Getters and Setters"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const stock ={\r\n    _short:\"\",\r\n    get ticker(){\r\n        return this._short;\r\n    },\r\n    set ticker(str){\r\n        this._short = str;\r\n    }\r\n}\r\nstock.ticker=\"BHP\"\r\nconsole.log(stock.ticker)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "BHP",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Object.Assign(target, ...source)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const target = { a: 1, b: 2 };\r\nconst source = { b: 4, c: 5 };\r\n\r\nconst returnedTarget = Object.assign(target, source);\r\n\r\nconsole.log(target); //Object { a: 1, b: 4, c: 5 }\r\n\r\nconsole.log(returnedTarget);//Object { a: 1, b: 4, c: 5 }"
+            ],
+            "outputs": []
+        }
+    ]
+}

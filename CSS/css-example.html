@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<link href="./css-example.css" rel="stylesheet">
+<h2>Selectors</h2>
+<a>Hover
+    <div>Div 1</div>
+    <div>Div 2</div>
+</a>
+<hr>
+<h2>position:relative</h2>
+<div class="div-box" id="position-relative">
+    <p>position: relative;<br>
+    top:50px;
+    left:50px;
+    </p>
+</div>
+<h2>position:absolute</h2>
+<div class="div-box" id="position-relative">
+    <div class="div-box-in" id="position-absolute">
+        <p>position: absolute;<br>
+        top:100px;
+        </p>
+    </div>
+    <p>position: relative;<br>
+    top:50px;
+    left:50px;
+    </p>
+</div>
+<div class="div-box" id="position-relative-2">
+    <div class="div-box-in" id="position-absolute">
+        <p>position: absolute;<br>
+        top:100px;
+        </p>
+    </div>
+    <p>position: relative;<br>
+    top:50px;
+    left:500px;
+    </p>
+</div>
+<h2>
+position:sticky
+</h2>
+<div class="div-box-in" id="position-sticky">
+    <p>position: sticky;<br>
+    top:100px;
+    left:1000px;
+    </p>
+</div>
+<h2>position:float</h2>
+<div class="div-box" id="position-relative">
+    <div class="div-box-in" id="position-float-right">
+        <p>TOP float right</p>
+    </div>
+    <div class="div-box-in" id="position-float-right">
+        <p>BOTTOM float right</p>
+    </div>
+    <p>position: relative;<br>
+    top:50px;
+    left:500px;
+    </p>
+</div>
+<h2>clear</h2>
+<h3>without clear:left on p</h3>
+<div class="div-box" id="position-relative">
+    <div class="div-box-in" id="position-float-right">
+        <p>TOP float right</p>
+    </div>
+    <div class="div-box-in" id="position-float-left">
+        <p>BOTTOM float left</p>
+    </div>
+    <p>position: relative;<br>
+    top:50px;
+    left:500px;
+    </p>
+</div>
+<h3>with clear:left on p</h3>
+<div class="div-box" id="position-relative">
+    <div class="div-box-in" id="position-float-left">
+        <p>BOTTOM float left</p>
+    </div>
+    <p class="clear-left">position: relative;<br>
+    top:50px;
+    left:500px;
+    </p>
+</div>
+<h3>with clear:left on p AND float:right precedent</h3>
+<div class="div-box" id="position-relative">
+
+    <div class="div-box-in" id="position-float-right">
+        <p>float right</p>
+    </div>
+    <p class="clear-left">position: relative;<br>
+    top:50px;
+    left:500px;
+    </p>
+</div>
+<h2>Flex</h2>
+<div class="flex-container div-box">
+    <div class="flex-item-1 div-box-in">1</div>
+    <div class="flex-item-2 div-box-in">2 flex-basis 120px</div>
+    <div class="flex-item-3 div-box-in">3</div>
+    <div class="flex-item-1 div-box-in">4 Wrapped</div>
+</div>
+<h2>Grid</h2>
+<div class="grid-container div-box">
+    <div class="grid-item-1">1</div>
+    <div class="grid-item-2">2</div>
+    <div class="grid-item-3">3</div>
+</div>
+<h2>Clearfix</h2>
+<div class="clear-fix-container">Without Clearfix<img src="./resource/MSFT.png" class="clear-fix-item"></div>
+<div style="clear:both"></div>
+<div class="clear-fix-container clearfix">Without Clearfix<img src="./resource/MSFT.png" class="clear-fix-item"></div>

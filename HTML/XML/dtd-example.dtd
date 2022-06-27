@@ -1,0 +1,5 @@
+<!ELEMENT examples (company)>
+<!ELEMENT company (ticker,name)>
+<!ELEMENT ticker (#PCDATA)>
+<!ATTLIST ticker exchange (ASX|NDQ) "ASX">
+<!ELEMENT name (#PCDATA)>
