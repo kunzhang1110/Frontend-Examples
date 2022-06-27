@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <div>
+    <form enctype="multipart/form-data" method="post" name="myForm">
+      <p>
+        Username:
+        <input type="input" name="username" value="kun" />
+      </p>
+      <p>
+        Files
+        <input type="file" name="file" multiple />
+      </p>
+      <p>
+        <input type="submit" value="Submit" />
+      </p>
+    </form>
+    <p>
+      <button onclick="buttonSubmitHandler(event)">Submit Files Only</button>
+    </p>
+  </div>
+</html>
+<script>
+  // Uploading JSON data
+  const data = { username: "myName" };
+
+  fetch("https://example.com", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data), //convert object to json string
+  })
+    .then((response) => response.json()) //convert json string to object
+    .then((data) => {
+      console.log("Success:", data);
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+</script>
+<script>
+  //Upload multiple files with button
+  function buttonSubmitHandler(e) {
+    e.preventDefault();
+    const formData = new FormData();
+    const fileElement = document.querySelector('input[type="file"][multiple]');
+
+    let i = 0;
+    for (const file of fileElement.files) {
+      formData.append(`files_${i}`, file);
+      i++;
+    }
+    uploadFiles(formData);
+  }
+
+  // Upload multiple files with form submission
+  const formElement = document.forms.namedItem("myForm");
+  formElement.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const formData = new FormData(formElement);
+    formData.append("CustomField", "Extra Data");
+    uploadFiles(formData);
+  });
+
+  //fetch API POST request with FormData
+  function uploadFiles(formData) {
+    fetch("https://example.com/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "multipart/form-data", //for FormData
+      },
+      body: formData,
+    })
+      .then((response) => response.json()) //convert json string to object
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+</script>

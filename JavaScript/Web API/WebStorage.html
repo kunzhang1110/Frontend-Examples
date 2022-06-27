@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html>
+  <h3>WebStorage</h3>
+  <p>From sessionStorage: <span id="webstorage-span"></span></p>
+  <script>
+    sessionStorage.setItem("Ticker", "MSFT"); //store
+    document.getElementById("webstorage-span").innerHTML =
+      sessionStorage.getItem("Ticker"); //retrive
+  </script>
+</html>

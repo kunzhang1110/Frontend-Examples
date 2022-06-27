@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <div>
+    <h3>Click and Download</h3>
+    <div><input type="text" value="Enter..." id="clickInput" /></div>
+    <button onclick="clickDowanload(event)">Download</button>
+    <script>
+      function clickDowanload(e) {
+        const clickInput = document.getElementById("clickInput");
+        const a = document.createElement("a");
+        let content = clickInput.value;
+        let blob = new Blob([content], { type: "text/markdown" });
+        a.download = `title.md`;
+        a.href = URL.createObjectURL(blob);
+        a.addEventListener("click", (e) => {
+          setTimeout(() => URL.revokeObjectURL(a.href), 30 * 1000);
+        });
+        a.click();
+      }
+    </script>
+
+    <h3>Click and Copy to Clipboard</h3>
+    <button onclick="clickCopy(event)">Copy to Clipboard</button>
+    <script>
+      function clickCopy(e) {
+        clickInput.select();
+        navigator.clipboard.writeText(clickInput.value);
+      }
+    </script>
+  </div>
+</html>

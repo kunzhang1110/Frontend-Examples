@@ -4,114 +4,128 @@ a:hover div:nth-child(2) {
 }
 
 /* position: relative */
-#position-relative{
-    position: relative;
-    top:50px;
-    left:50px;
+#position-relative {
+  position: relative;
+  top: 50px;
+  left: 50px;
 }
-#position-relative-2{
-    position: relative;
-    top:50px;
-    left:500px;
+#position-relative-2 {
+  position: relative;
+  top: 50px;
+  left: 500px;
 }
-#position-absolute{
-    position: absolute;
-    top:100px;
+#position-absolute {
+  position: absolute;
+  top: 100px;
 }
-#position-sticky{
-    position: sticky;
-    top:100px;
-    left:1000px;
+#position-sticky {
+  position: sticky;
+  top: 100px;
+  left: 1000px;
 }
 
 /* position: float */
-#position-float-right{
-    position: float;
-    float: right;
+#position-float-right {
+  position: float;
+  float: right;
 }
-#position-float-left{
-    position: float;
-    float: left;
+#position-float-left {
+  position: float;
+  float: left;
 }
-.clear-left{
-    clear:left;
+.clear-left {
+  clear: left;
 }
-.clear-both{
-    clear:both;
+.clear-both {
+  clear: both;
 }
 
 /* display: flex */
 .flex-container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction:row;
-    justify-content: center;
-    align-items: flex-end;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end;
 }
-.flex-item-1{
-    flex-grow:1;
-    background-color:red
+.flex-item-1 {
+  flex-grow: 1;
+  background-color: red;
 }
-.flex-item-2{
-    flex-grow:1;
-    flex-basis: 120px;
+.flex-item-2 {
+  flex-grow: 1;
+  flex-basis: 120px;
 }
-.flex-item-3{
-    flex-grow:2;
-    background-color:aquamarine
+.flex-item-3 {
+  flex-grow: 2;
+  background-color: aquamarine;
 }
 
 /* display: grid */
 .grid-container {
-    display: grid;
-    grid-template-columns: [col-1-start] 50px [line2] 150px [line3] auto [end];
-    grid-template-rows: repeat(3,50px);
-    grid-row-gap: 15px;
-    align-content: center;
+  display: grid;
+  grid-template-columns: [col-1-start] 50px [line2] 150px [line3] auto [end];
+  grid-template-rows: repeat(3, 50px);
+  grid-row-gap: 15px;
+  align-content: center;
 }
 
-.grid-item-1{
-    border:solid 1px red;
-    grid-column:col-1-start/line2;
-    grid-row:span 1
+.grid-item-1 {
+  border: solid 1px red;
+  grid-column: col-1-start/line2;
+  grid-row: span 1;
 }
- .grid-item-2{
-    border:solid 1px green;
-    grid-column:2/span 2;
-    grid-row:span 2
+.grid-item-2 {
+  border: solid 1px green;
+  grid-column: 2 / span 2;
+  grid-row: span 2;
 }
-.grid-item-3{
-    border:solid 1px blue;
-    grid-column:col-1-start/span 3;
-    grid-row:3
+.grid-item-3 {
+  border: solid 1px blue;
+  grid-column: col-1-start/span 3;
+  grid-row: 3;
 }
 
 /* clear fix*/
-.clear-fix-container{
-    border: 3px solid #4CAF50;
-    padding: 5px;
+.clear-fix-container {
+  border: 3px solid #4caf50;
+  padding: 5px;
 }
-.clear-fix-item{
-    float: right;
+.clear-fix-item {
+  float: right;
 }
-.clearfix{
-    content: "";
-    clear: both;
-    display: inline-block;
+.clearfix {
+  content: "";
+  clear: both;
+  display: inline-block;
+}
+
+/* Center Elements*/
+.margin-auto-center {
+  margin: 0 auto;
+}
+
+.transform-translate-center {
+  position: fixed; /*any non-static*/
+  top: 50%;
+  left: 50%;
+  transform-box: content-box;
+  transform: translateX(-50%);
+  transform: translateY(-50%);
 }
 
 /* basic styles */
-*{
-    font-family: Arial, Helvetica, sans-serif;
+* {
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.div-box{
-    border:solid 1px grey;
-    height: 400px;
-    width: 400px;
+.div-box {
+  border: solid 1px grey;
+  height: 400px;
+  width: 400px;
 }
-.div-box-in{
-    border:solid 1px red;
-    height: 100px;
-    width: 100px;
+.div-box-in {
+  border: solid 1px red;
+  height: 100px;
+  width: 100px;
 }
