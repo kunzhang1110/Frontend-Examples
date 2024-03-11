@@ -110,6 +110,7 @@ const ImagesInput = () => {
       </form>
       {images.map((image, idx) => (
         <img
+          alt={image.previewURL}
           src={image.previewURL}
           style={{ width: "5vh", height: "5vh" }}
           key={idx}
@@ -211,7 +212,7 @@ const DomClick = () => {
     a.click();
   };
 
-  const copyToClipboard = (e) => {
+  const copyToClipboard = () => {
     navigator.clipboard.writeText(input);
   };
 

@@ -19,6 +19,7 @@ import { ForwardRefUseImperativeHandleExample } from "./APIs/ForwardRefUseImpera
 import { CreateAsyncThunkExample } from "./redux/CreateAsyncThunkExample";
 import { FuncComponentLifeCycleExp } from "./basics/FuncComponentLifeCycleExp";
 import { ChildrenComponentExp } from "./basics/ChildrenComponentExp";
+import { StateCrudExp } from "./basics/StateCrudExp";
 
 export const App = () => (
   <div>
@@ -44,6 +45,7 @@ export const App = () => (
           path="/ChildrenComponentExp"
           element={<ChildrenComponentExp />}
         />
+        <Route path="/StateCrudExp" element={<StateCrudExp />} />
         <Route path="/FormExample" element={<FormExample />} />
         <Route path="/UseCallbackExample" element={<UseCallbackExample />} />
         <Route path="/UseContextExample" element={<UseContextExample />} />
@@ -88,9 +90,9 @@ const Home = () => (
         </Link>
         <Link to="/ChildrenComponentExp">Children Component Example</Link>
         <Link to="/FormExample">Form Example</Link>
+        <Link to="/StateCrudExp">State CRUD Example</Link>
       </CardBody>
     </Card>
-
     <Card className="mt-2">
       <h3>React Hooks</h3>
       <CardBody className="d-flex flex-column">
@@ -104,7 +106,6 @@ const Home = () => (
         <Link to="/UseRefExample">useRef Example</Link>
       </CardBody>
     </Card>
-
     <Card className="mt-2">
       <h3>React APIs</h3>
       <CardBody className="d-flex flex-column">
@@ -114,7 +115,6 @@ const Home = () => (
         </Link>
       </CardBody>
     </Card>
-
     <Card className="mt-2">
       <h3>Redux</h3>
       <CardBody className="d-flex flex-column">
