@@ -1,0 +1,11 @@
+<button
+  [ngClass]="className"
+  (click)="onClick()"
+>
+  <ng-container *ngIf="text != null; else contentPlaceholder">
+    {{ text }}
+  </ng-container>
+  <ng-template #contentPlaceholder>
+    <ng-content></ng-content>
+  </ng-template>
+</button>

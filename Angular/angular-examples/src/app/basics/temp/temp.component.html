@@ -1,0 +1,48 @@
+<div class="text-center">
+  <form class="mb-2" (ngSubmit)="onSubmit()">
+    <div class="mb-2">
+      <label for="name-input">Name</label>
+      <input
+        pInputText
+        type="text"
+        id="name-input"
+        class="p-inputtext-sm mx-1"
+        name="nameInput"
+        [(ngModel)]="nameInput"
+      />
+    </div>
+    <div class="mb-2">
+      <label for="age-input">Age</label>
+      <input
+        pInputText
+        type="text"
+        id="age-input"
+        class="p-inputtext-sm mx-1"
+        name="ageInput"
+        [(ngModel)]="ageInput"
+      />
+    </div>
+    <input
+      type="submit"
+      [value]="isEdit ? 'Update' : 'Create'"
+      class="btn btn-primary"
+    />
+  </form>
+
+  <div *ngFor="let user of users">
+    <div class="card w-100 m-1 align-items-center" style="width: 18rem">
+      <div class="card-body">
+        <p class="card-text">{{ user.name }}</p>
+        <p class="card-text">Age: {{ user.age }}</p>
+        <app-button
+          className="btn btn-primary me-1"
+          (btnClick)="onToggleEdit(user)"
+          >Edit
+        </app-button>
+        <app-button className="btn btn-secondary" (btnClick)="onDelete(user)"
+          >Delete</app-button
+        >
+      </div>
+    </div>
+  </div>
+</div>
