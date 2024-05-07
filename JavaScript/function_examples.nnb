@@ -1,0 +1,107 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Function"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Closure"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let val = 1;\r\nconst closure1 = function () {\r\n  console.log(val);\r\n  val = 2;\r\n};\r\nval = 3;\r\nconst closure2 = function () {\r\n  console.log(val);\r\n};\r\nclosure1(); //3\r\nclosure2(); //2\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "3",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function makeMultiplier(multiplier) {\r\n    return function(x) {\r\n        return multiplier * x;\r\n    };\r\n}\r\nvar doubleAll = makeMultiplier(2);\r\nconsole.log(doubleAll(10)); // 20\r\n\r\ndoubleAll(10)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "20",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Thunk"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// Synchronous Thunk\r\nconst add = (x, y) => x + y;\r\n\r\nconst thunk = () => add(2, 3);\r\n\r\nthunk(); // 5"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//Asychronous Thunk\r\nfunction fetchData(fn) {\r\n  fetch(\"https://example.com\")\r\n    .then((response) => response.json())\r\n    .then((json) => fn(json));\r\n}\r\n\r\n// thunk has no parameters\r\nconst asyncThunk = function () {\r\n  return fetchData(function getData(data) {\r\n    console.log(data);\r\n  });\r\n};\r\n\r\nasyncThunk(); //takes no arguments\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Debouncing"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function debounce(func, timeout = 500) {\r\n  let timer;\r\n  return (...args) => {\r\n    clearTimeout(timer);\r\n    timer = setTimeout(() => {\r\n      func.apply(this, args);\r\n    }, timeout);\r\n  };\r\n}\r\nfunction fetchResults() {\r\n  console.log(\"Fetching input suggestions\");\r\n}\r\nconst processChange = debounce(() => fetchResults());\r\n\r\n<input type=\"text\" onkeyup=\"processChange()\" />"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Throttling"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const throttle = (func, limit) => {\r\n  let inThrottle;\r\n  return (...args) => {\r\n    if (!inThrottle) {\r\n      func.apply(this, args);\r\n      inThrottle = true;\r\n      setTimeout(() => (inThrottle = false), limit);\r\n    }\r\n  };\r\n};\r\nwindow.addEventListener(\"scroll\", () => {\r\n  throttle(handleScrollAnimation, 100);\r\n});\r\n"
+            ],
+            "outputs": []
+        }
+    ]
+}

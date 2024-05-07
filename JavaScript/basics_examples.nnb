@@ -10,20 +10,6 @@
         {
             "language": "markdown",
             "source": [
-                "## array.splice()"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "var fruits = [\"Banana\", \"Orange\", \"Apple\", \"Mango\"];\r\nfruits.splice(2, 1, \"Lemon\", \"Kiwi\");\r\nconsole.log(fruits)\r\n//splice adds \"Lemon\", \"Kiwi\"  after 2nd element and remove 1 element \"Apple\"."
-            ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
                 "## Spread Syntax"
             ],
             "outputs": []
@@ -166,7 +152,7 @@
         {
             "language": "javascript",
             "source": [
-                "x=5\r\nconsole.log(x) // 5\r\nvar x; //declare after usage, var x is moved to the top\r\n\r\nconsole.log(y) //undefined\r\nvar y = 7 //y is initialized, var y = 7 is not moved to the top"
+                "console.log(x); // undefined\r\nvar x = 5;\r\n\r\n//is equivalent to\r\nvar x;\r\nconsole.log(x); // undefined\r\nx = 5;\r\n"
             ],
             "outputs": [
                 {
@@ -186,122 +172,119 @@
         {
             "language": "markdown",
             "source": [
-                "# Function"
+                "## for...in and for...of on Arrays"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let arr = [\"a\", \"b\", \"c\"];\r\n\r\narr.newProp = \"newVlue\";\r\n\r\n// key are the property keys\r\nfor (let key in arr) {\r\n  console.log(key); // 0, 1, 2 & newProp\r\n}\r\n\r\n// value are the property values\r\nfor (let value of arr) {\r\n  console.log(value); // a, b, c\r\n}\r\n\r\n"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "## Closure"
+                "## Display data in a table using console object"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "let val = 1;\r\nconst closure1 = function() {\r\n    console.log(val);\r\n    val = 2;\r\n};\r\nval = 3;\r\nconst closure2 = function() {\r\n    console.log(val);\r\n};\r\nclosure1(); //3\r\nclosure2(); //2"
+                "const users = [\r\n    { name: \"John\", id: 1, city: \"Delhi\" },\r\n    { name: \"Max\", id: 2, city: \"London\" },\r\n  ];\r\n  console.table(users);\r\n  "
             ],
-            "outputs": [
-                {
-                    "items": [
-                        {
-                            "mime": "application/vnd.code.notebook.stdout",
-                            "value": [
-                                "3",
-                                "",
-                                ""
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "function makeMultiplier(multiplier) {\r\n    return function(x) {\r\n        return multiplier * x;\r\n    };\r\n}\r\nvar doubleAll = makeMultiplier(2);\r\nconsole.log(doubleAll(10)); // 20\r\n\r\ndoubleAll(10)"
-            ],
-            "outputs": [
-                {
-                    "items": [
-                        {
-                            "mime": "application/vnd.code.notebook.stdout",
-                            "value": [
-                                "20",
-                                "",
-                                ""
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "## Function Object"
+                "## Mixin in Javascript"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "//Function Object constructed by Function constructor\r\nvar add = new Function(\"a\", \"b\", \"return a + b;\");\r\nconsole.log(add(1,2))"
+                "// mixin\r\nlet myMixin = {\r\n    log() {\r\n      console.log(` ${this.name}`);\r\n    },\r\n  };\r\n  \r\n  // usage:\r\n  class User {\r\n    constructor(name) {\r\n      this.name = name;\r\n    }\r\n  }\r\n  \r\n  // copy the methods\r\n  Object.assign(User.prototype, myMixin);\r\n  \r\n  new User(\"Amy\").log();\r\n  "
             ],
-            "outputs": [
-                {
-                    "items": [
-                        {
-                            "mime": "application/vnd.code.notebook.stdout",
-                            "value": [
-                                "3",
-                                "",
-                                ""
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "## Getters and Setters"
+                "## Example: var, let and event loop"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "const stock ={\r\n    _short:\"\",\r\n    get ticker(){\r\n        return this._short;\r\n    },\r\n    set ticker(str){\r\n        this._short = str;\r\n    }\r\n}\r\nstock.ticker=\"BHP\"\r\nconsole.log(stock.ticker)"
+                "for (var i = 0; i < 10; i++) {}\r\n\r\n// is equivalent to\r\nvar i = 0;\r\nwhile (i < 10) {\r\n  i++;\r\n}"
             ],
-            "outputs": [
-                {
-                    "items": [
-                        {
-                            "mime": "application/vnd.code.notebook.stdout",
-                            "value": [
-                                "BHP",
-                                "",
-                                ""
-                            ]
-                        }
-                    ]
-                }
-            ]
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "for (let i = 0; i < 10; i++) {}\r\n// is equivalent to\r\nvar n = 0;\r\nwhile (n < 10) {\r\n  let i = n; // Initialize i with the current value of n\r\n  n++; // Increment n before using it in the next iteration\r\n}"
+            ],
+            "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "## Object.Assign(target, ...source)"
+                "### Closure Example"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "const target = { a: 1, b: 2 };\r\nconst source = { b: 4, c: 5 };\r\n\r\nconst returnedTarget = Object.assign(target, source);\r\n\r\nconsole.log(target); //Object { a: 1, b: 4, c: 5 }\r\n\r\nconsole.log(returnedTarget);//Object { a: 1, b: 4, c: 5 }"
+                "var array = [];\r\nfor (var i = 0; i < 5; i++) { //var i is globally scoped and is 5 after the loop\r\n  array.push({\r\n    onclick: function () {\r\n      console.log(\"array: \", i); //define here has closure and can access i\r\n    },\r\n  });\r\n}\r\narray[0].onclick(); // array: 5\r\narray[1].onclick(); // array: 5"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Async Example"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "for (var i = 0; i < 4; i++) {\r\n    // global scope\r\n    setTimeout(() => console.log(i));\r\n  } //4 4 4 4 \r\n  \r\n  for (let i = 0; i < 4; i++) {\r\n    // block scope\r\n    setTimeout(() => console.log(i));\r\n  }//0 1 2 3"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Get params from URL"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let urlString = \"http://www.some-domain.com/about.html?x=1&y=2&z=3\"; //window.location.href\r\nlet url = new URL(urlString);\r\nlet parameterZ = url.searchParams.get(\"z\");\r\nconsole.log(parameterZ); // 3"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Decorator"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function logDecorator(target, key, descriptor) {\r\n    const originalMethod = descriptor.value;\r\n    descriptor.value = function (...args) {\r\n      console.log(`Calling ${key} with arguments: ${args}`);\r\n      return originalMethod.apply(this, args);\r\n    };\r\n    return descriptor;\r\n  }\r\n  \r\n  class MyClass {\r\n    @logDecorator\r\n    myMethod(x, y) {\r\n      return x + y;\r\n    }\r\n  }\r\n  \r\n  const obj = new MyClass();\r\n  \r\n  console.log(obj.myMethod(3, 5)); // Output: Calling myMethod with arguments: 3,5\r\n                                    //8\r\n  "
             ],
             "outputs": []
         }
