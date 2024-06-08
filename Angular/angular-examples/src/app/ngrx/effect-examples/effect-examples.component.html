@@ -1,0 +1,36 @@
+<div class="d-flex flex-column align-items-start" style="width: 40vw">
+  <h2>NgRx Effect Example</h2>
+  <form class="d-flex justify-content-start my-2 5" [formGroup]="form">
+    <input class="me-2" id="username" formControlName="username" placeholder="Username" />
+    <input class="me-2" id="password" formControlName="password" placeholder="Password" />
+    <button class="btn btn-outline-primary" (click)="onSubmit()">Submit</button>
+    <div *ngIf="isLoading$ | async" class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+    <div *ngIf="hasError$ | async as error">Error: {{ error }}</div>
+  </form>
+
+  <ul class="p-0 w-50">
+    <li
+      *ngFor="let user of users$ | async"
+      class="d-flex justify-content-between align-items-center my-1"
+      style="list-style-type: none"
+    >
+      <span class="me-2"> {{ user.username }} - {{ user.password }}</span>
+      <span>
+        <button
+          class="btn btn-sm btn-outline-secondary me-2"
+          (click)="onEdit(user)"
+        >
+          Edit
+        </button>
+        <button
+          class="btn btn-sm btn-outline-danger"
+          (click)="onDelete(user.id!)"
+        >
+          Delete
+        </button>
+      </span>
+    </li>
+  </ul>
+</div>
