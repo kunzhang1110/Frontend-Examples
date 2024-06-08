@@ -29,7 +29,7 @@ export const StateCrudExp = () => {
 
   const addNames = (index = 1) => {
     // add item at index
-    setNames([...names.slice(0, index), "Zeno", ...names.slice(index)]);
+    setNames([...names.slice(0, index), "Charlie", ...names.slice(index)]);
   };
   const updateNames = (index = 1) => {
     // update item at index
