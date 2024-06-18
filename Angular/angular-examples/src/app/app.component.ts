@@ -31,4 +31,9 @@ import { HomeComponent } from './home/home.component';
 })
 export class AppComponent {
   title = 'angular_examples';
+
+  print(){
+    console.log('hello');
+    return 'hello'
+  }
 }

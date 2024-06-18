@@ -13,7 +13,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(),
     provideHttpClient(),
-    provideStore({ 'users': usersReducer }),
+    provideStore({ users: usersReducer }),
     provideEffects([UsersEffect]),
-  ]
+  ],
 };
