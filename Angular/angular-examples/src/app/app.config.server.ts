@@ -10,7 +10,6 @@ const serverConfig: ApplicationConfig = {
   providers: [
     provideServerRendering(),
     provideHttpClient(),
-
   ]
 };
 

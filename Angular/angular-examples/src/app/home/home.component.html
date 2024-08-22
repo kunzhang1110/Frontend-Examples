@@ -3,10 +3,42 @@
   <ul>
     <li class="nav-item">
       <a
-        routerLink="/ngrx/effect"
+        [routerLink]="ROUTE_PATHS.ngrx.effect"
         routerLinkActive="active"
         ariaCurrentWhenActive="page"
         >Ngrx Effect</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        [routerLink]="ROUTE_PATHS.basics.lifeCycleExp"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Life Cycle</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        [routerLink]="ROUTE_PATHS.basics.pipeExp"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Pipe</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        [routerLink]="ROUTE_PATHS.rxjs.observableExp"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Observable</a
+      >
+    </li>
+    <li class="nav-item">
+      <a
+        [routerLink]="ROUTE_PATHS.rxjs.mappingOperatorsExp"
+        routerLinkActive="active"
+        ariaCurrentWhenActive="page"
+        >Mapping Operators</a
       >
     </li>
   </ul>

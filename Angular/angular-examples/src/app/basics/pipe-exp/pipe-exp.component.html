@@ -1,0 +1,21 @@
+<h3>Custom Pipe - Truncate 17 characters</h3>
+<p>{{ "Customize Pipe Example" | truncate : 17 }}</p>
+
+<h3>Async Pipe</h3>
+<div *ngIf="users$ | async as data; else loading">
+  <pre>{{ data | json }}</pre>
+</div>
+<ng-template #loading>Loading...</ng-template>
+
+<h3>Date Pipe</h3>
+<p>Short Date: {{ today | date : "short" }}</p>
+<p>Full Date: {{ today | date : "fullDate" }}</p>
+<p>Custom Date: {{ today | date : "dd/MM/yyyy" }}</p>
+
+<h3>Decimal Pipe</h3>
+<p>Two Decimals: {{ value | number : "1.2-2" }}</p>
+<p>Custom Format: {{ value | number : "3.1-5" }}</p>
+
+<h3>Percentage Pipe</h3>
+<p>One Decimal: {{ ratio | percent : "1.1-1" }}</p>
+<p>Custom Format: {{ ratio | percent : "2.0-0" }}</p>

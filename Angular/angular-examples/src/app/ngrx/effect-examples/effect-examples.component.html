@@ -1,8 +1,18 @@
 <div class="d-flex flex-column align-items-start" style="width: 40vw">
   <h2>NgRx Effect Example</h2>
   <form class="d-flex justify-content-start my-2 5" [formGroup]="form">
-    <input class="me-2" id="username" formControlName="username" placeholder="Username" />
-    <input class="me-2" id="password" formControlName="password" placeholder="Password" />
+    <input
+      class="me-2"
+      id="username"
+      formControlName="username"
+      placeholder="Username"
+    />
+    <input
+      class="me-2"
+      id="password"
+      formControlName="password"
+      placeholder="Password"
+    />
     <button class="btn btn-outline-primary" (click)="onSubmit()">Submit</button>
     <div *ngIf="isLoading$ | async" class="spinner-border" role="status">
       <span class="sr-only">Loading...</span>

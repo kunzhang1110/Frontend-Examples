@@ -1,0 +1,10 @@
+<button class="btn btn-primary" (click)="changeUserNameDirectly()">
+  Change Username directly
+</button>
+<button class="btn btn-primary" (click)="markForCheck()">Mark For Check</button>
+<button class="btn btn-primary" (click)="changeNameWithNewObject()">
+  Change Username with New Object
+</button>
+
+{{ user | json }}
+<app-change-detection-exp [user]="user"></app-change-detection-exp>

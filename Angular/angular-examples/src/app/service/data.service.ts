@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { delay, Observable } from 'rxjs';
 import { environment } from '../../environments/environment.development';
 import { User } from '../ngrx/models/user.model';
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
 });
+
 @Injectable({
   providedIn: 'root',
 })
@@ -16,7 +17,7 @@ export class DataService {
   constructor(private http: HttpClient) {}
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.dbUrl}/users`);
+    return this.http.get<User[]>(`${this.dbUrl}/users`).pipe(delay(500));
   }
 
   addUser(user: User): Observable<User> {
