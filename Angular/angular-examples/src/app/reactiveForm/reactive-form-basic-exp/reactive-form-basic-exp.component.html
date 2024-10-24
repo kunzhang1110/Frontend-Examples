@@ -1,0 +1,85 @@
+<form
+  [formGroup]="userForm"
+  (ngSubmit)="onSubmit()"
+  class="p-4 border rounded shadow"
+>
+  <div class="mb-3">
+    <label for="username" class="form-label">Username</label>
+    <input id="username" formControlName="username" class="form-control" />
+    <div
+      *ngIf="
+        userForm.get(formInfos.username.id)?.invalid &&
+        userForm.get(formInfos.username.id)?.dirty
+      "
+      class="text-danger small"
+    >
+      <small *ngIf="userForm.get(formInfos.username.id)?.errors?.required"
+        >Username is required</small
+      >
+      <small *ngIf="userForm.get(formInfos.username.id)?.errors?.minlength"
+        >Username must be at least 3 characters long</small
+      >
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input id="email" formControlName="email" class="form-control" />
+    <div
+      *ngIf="
+        userForm.get(formInfos.email.id)?.invalid &&
+        userForm.get(formInfos.email.id)?.dirty
+      "
+      class="text-danger small"
+    >
+      <small *ngIf="userForm.get(formInfos.email.id)?.errors?.required"
+        >Email is required</small
+      >
+      <small *ngIf="userForm.get(formInfos.email.id)?.errors?.email"
+        >Invalid email format</small
+      >
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input
+      type="password"
+      id="password"
+      formControlName="password"
+      class="form-control"
+    />
+    <div
+      *ngIf="
+        userForm.get(formInfos.password.id)?.invalid &&
+        userForm.get(formInfos.password.id)?.dirty
+      "
+      class="text-danger small"
+    >
+      <small *ngIf="userForm.get(formInfos.password.id)?.errors?.required"
+        >Password is required</small
+      >
+      <small *ngIf="userForm.get(formInfos.password.id)?.errors?.minlength"
+        >Password must be at least 6 characters long</small
+      >
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="confirmPassword" class="form-label">Confirm Password</label>
+    <input
+      type="password"
+      id="confirmPassword"
+      formControlName="confirmPassword"
+      class="form-control"
+    />
+    <div
+      *ngIf="userForm.get(formInfos.confirmPassword.id)?.dirty"
+      class="text-danger small"
+    >
+      <small *ngIf="userForm.errors?.mismatch">Passwords do not match</small>
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary w-100">Submit</button>
+</form>

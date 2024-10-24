@@ -6,6 +6,7 @@ import { pipe } from 'rxjs';
 import { PipeExpComponent } from './basics/pipe-exp/pipe-exp.component';
 import { ObservableExpComponent } from './rxjs/observable-exp/observable-exp.component';
 import { MappingOperatorsExpComponent } from './rxjs/mapping-operators-exp/mapping-operators-exp.component';
+import { ReactiveFormBasicExpComponent } from './reactiveForm/reactive-form-basic-exp/reactive-form-basic-exp.component';
 
 export const ROUTE_PATHS = {
   ngrx: {
@@ -19,6 +20,9 @@ export const ROUTE_PATHS = {
     observableExp: 'rxjs/observableExp',
     mappingOperatorsExp: 'rxjs/mappingOperators',
   },
+  reactiveForm: {
+    reactiveFormBasicExp: 'reactiveForm/reactiveFormBasicExp',
+  }
 };
 
 export const routes: Routes = [
@@ -46,5 +50,9 @@ export const routes: Routes = [
   {
     path: ROUTE_PATHS.rxjs.mappingOperatorsExp,
     component: MappingOperatorsExpComponent,
+  },
+  {
+    path: ROUTE_PATHS.reactiveForm.reactiveFormBasicExp,
+    component: ReactiveFormBasicExpComponent,
   },
 ];
