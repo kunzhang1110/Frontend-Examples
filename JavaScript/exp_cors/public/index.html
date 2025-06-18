@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>SOP Example</title>
+</head>
+<link rel="icon" href="data:,">
+
+<body>
+    <h1>SOP - Requests</h1>
+    <div>Open this page using a live server to simulate a cross-origin situation.</div>
+    <div>Open this page via http://localhost:3000 to simulate a same-origin situation.</div>
+    <div>Open dev console</div>
+    <script>
+        fetch('http://localhost:3000/api/getData')
+            .then(response => response.json())
+            .then(data => console.log("Success:", data))
+            .catch(error => console.error("Error:", error));
+
+        // Sending JSON data
+        const postData = {
+            name: "Kun",
+            email: "kun@example.com"
+        };
+
+        fetch('http://localhost:3000/api/postData', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(postData)
+        })
+            .then(response => response.json())
+            .then(data => console.log("POST JSON Success:", data))
+            .catch(error => console.error("POST JSON Error:", error));
+
+        // Sending form data
+        const formData = new FormData();
+        for (const key in postData) {
+            if (postData.hasOwnProperty(key)) {
+                formData.append(key, postData[key]);
+            }
+        }
+
+        fetch('http://localhost:3000/api/postData', {
+            method: 'POST',
+            body: formData,
+        })
+            .then(response => response.json())
+            .then(data => console.log("POST FORM Success:", data))
+            .catch(error => console.error("POST FORM Error:", error));
+    </script>
+    <hr>
+    <h1>SOP - DOM Access Example</h1>
+    <button id="open">Open Other Origin</button>
+    <script>
+        document.getElementById("open").onclick = () => {
+            const popup = window.open("http://127.0.0.1:5500/exp_cors/public/index.html");
+
+            setTimeout(() => {
+                try {
+                    const text = popup.document.body.innerText;
+                    console.log("Accessed content:", text);
+                } catch (e) {
+                    console.error("SOP violation: Cannot access DOM from different origin.");
+                }
+            }, 1000); // wait for popup to load
+        };
+    </script>
+</body>
+
+</html>
