@@ -1,0 +1,14 @@
+{
+  "name": "exp_mongoose",
+  "version": "1.0.0",
+  "main": "exp_mongoose.js",
+  "scripts": {
+    "start": "node exp_mongoose.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "mongoose": "^8.19.1"
+  }
+}
