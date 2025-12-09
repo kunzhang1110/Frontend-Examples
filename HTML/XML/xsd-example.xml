@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <examples xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-xsi:noNamespaceSchemaLocation="example.xsd">
-    <company>
+    xsi:noNamespaceSchemaLocation="xsd-example.xsd">
+    <company listed="true">
         <ticker exchange="NDQ">MSFT</ticker>
         <name>Microsoft</name>
+        <price>2000</price>
     </company>
 </examples>

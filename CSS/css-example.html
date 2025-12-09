@@ -1,12 +1,18 @@
 <!DOCTYPE html>
 <link href="./css-example.css" rel="stylesheet" />
-<h2>Selectors</h2>
-<a
-  >Hover
+<h2>Pseudo Class Selector</h2>
+<a>Hover
   <div>Div 1</div>
   <div>Div 2</div>
 </a>
+
+<hr styl />
+
+<h2>Pseudo-element Selector</h2>
+<p id="pseudo-element">This is a paragraph.</p>
+
 <hr />
+
 <h2>position:relative</h2>
 <div class="div-box" id="position-relative">
   <p>
@@ -14,6 +20,9 @@
     top:50px; left:50px;
   </p>
 </div>
+
+<hr />
+
 <h2>position:absolute</h2>
 <div class="div-box" id="position-relative">
   <div class="div-box-in" id="position-absolute">
@@ -39,6 +48,9 @@
     top:50px; left:500px;
   </p>
 </div>
+
+<hr />
+
 <h2>position:sticky</h2>
 <div class="div-box-in" id="position-sticky">
   <p>
@@ -46,7 +58,27 @@
     top:100px; left:1000px;
   </p>
 </div>
+
+<hr />
+
 <h2>position:float</h2>
+<h3>without float</h3>
+<div class="div-box" id="position-relative">
+  <div class="div-box-in">
+    <p>TOP</p>
+  </div>
+  <div class="div-box-in">
+    <p>BOTTOM</p>
+  </div>
+  <p>
+    Float moves an element to the left or right of its container, letting surrounding inline content wrap around it.
+    Floated elements move until it touches the container edge or another floated element.
+    Floated elements are removed from normal flow, but order is partially preserved.
+    Vertical margins between floats do not collapse.
+    Absolutely positioned elements ignore floats.
+    Floated elements are automatically display:block.
+</div>
+<h3 style="margin-top: 100px;">without float:right</h3>
 <div class="div-box" id="position-relative">
   <div class="div-box-in" id="position-float-right">
     <p>TOP float right</p>
@@ -55,57 +87,61 @@
     <p>BOTTOM float right</p>
   </div>
   <p>
-    position: relative;<br />
-    top:50px; left:500px;
+    Float moves an element to the left or right of its container, letting surrounding inline content wrap around it.
+    Floated elements move until it touches the container edge or another floated element.
+    Floated elements are removed from normal flow, but order is partially preserved.
+    Vertical margins between floats do not collapse.
+    Absolutely positioned elements ignore floats.
+    Floated elements are automatically display:block.
   </p>
 </div>
+
+<hr />
+
 <h2>clear</h2>
-<h3>without clear:left on p</h3>
+<h3>without clear:right on p</h3>
 <div class="div-box" id="position-relative">
   <div class="div-box-in" id="position-float-right">
     <p>TOP float right</p>
-  </div>
-  <div class="div-box-in" id="position-float-left">
-    <p>BOTTOM float left</p>
   </div>
   <p>
     position: relative;<br />
     top:50px; left:500px;
   </p>
 </div>
-<h3>with clear:left on p</h3>
-<div class="div-box" id="position-relative">
-  <div class="div-box-in" id="position-float-left">
-    <p>BOTTOM float left</p>
-  </div>
-  <p class="clear-left">
-    position: relative;<br />
-    top:50px; left:500px;
-  </p>
-</div>
-<h3>with clear:left on p AND float:right precedent</h3>
+<h3 style="margin-top: 100px;">with clear:right on p</h3>
 <div class="div-box" id="position-relative">
   <div class="div-box-in" id="position-float-right">
-    <p>float right</p>
+    <p>TOP float right</p>
   </div>
-  <p class="clear-left">
+  <p style="clear:right">
     position: relative;<br />
-    top:50px; left:500px;
+    top:50px; left:500px;<br />
+    clear:right;
   </p>
 </div>
+
+<hr />
+
 <h2>Flex</h2>
 <div class="flex-container div-box">
-  <div class="flex-item-1 div-box-in">1</div>
-  <div class="flex-item-2 div-box-in">2 flex-basis 120px</div>
-  <div class="flex-item-3 div-box-in">3</div>
-  <div class="flex-item-1 div-box-in">4 Wrapped</div>
+  <div class="flex-item-1 div-box-in">1 <br> flex-grow: 1;</div>
+  <div class="flex-item-2 div-box-in">2 <br> flex-basis 120px;</div>
+  <div class="flex-item-3 div-box-in">3 <br> flex-grow: 5;</div>
+  <div class="flex-item-1 div-box-in">4 <br> flex-wrap: wrap;<br> align-content: space-around;</div>
 </div>
+
+<hr />
+
 <h2>Grid</h2>
 <div class="grid-container div-box">
   <div class="grid-item-1">1</div>
   <div class="grid-item-2">2</div>
   <div class="grid-item-3">3</div>
 </div>
+
+<hr />
+
 <h2>Clearfix</h2>
 <div class="clear-fix-container">
   Without Clearfix<img src="./resource/MSFT.png" class="clear-fix-item" />
@@ -114,6 +150,9 @@
 <div class="clear-fix-container clearfix">
   Without Clearfix<img src="./resource/MSFT.png" class="clear-fix-item" />
 </div>
+
+<hr />
+
 <h2>Center Elements</h2>
 <h3>margin auto center</h3>
 <div class="div-box">

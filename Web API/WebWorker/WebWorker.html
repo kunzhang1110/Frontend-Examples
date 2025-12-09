@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
-  <body>
-    <p>Count numbers: <output id="result"></output></p>
-    <button onclick="startWorker()">Start Worker</button>
-    <button onclick="stopWorker()">Stop Worker</button>
 
-    <script>
-      var w;
-      function startWorker() {
-        if (typeof w == "undefined") {
-          w = new Worker("worker.js");
-        }
-        w.onmessage = function (event) {
-          document.getElementById("result").innerHTML = event.data;
-        };
-      }
-      function stopWorker() {
-        w.terminate();
-        w = undefined;
-      }
-    </script>
-  </body>
+<body>
+<p>Count numbers: <span id="result"></span></p>
+<button onclick="startWorker()">Start Worker</button>
+<button onclick="stopWorker()">Stop Worker</button>
+
+<script>
+  // Create a new Web Worker that runs worker.js
+  var worker = new Worker("worker.js");
+
+  function startWorker() {
+    worker.onmessage = function (event) {// Receive messages from the worker
+      document.getElementById("result").innerHTML = event.data;
+    };
+  }
+  function stopWorker() {
+    worker.postMessage("stop"); // Send a message to the worker to stop
+    worker.terminate();
+    worker = undefined;
+  }
+</script>
+</body>
+
 </html>

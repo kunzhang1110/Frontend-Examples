@@ -8,37 +8,33 @@ function promise_examples() {
       reject("Error");
     }
   });
-  // --- Promise Chaining ---
-  p1.then((value) => console.log(value)).catch((value) => console.log(value)); //shorthand
-  p1.then(
-    function (success_result) {
-      console.log(success_result);
-    },
-    function (error_result) {
-      console.log(error_result);
-    }
-  );
-  //  --- .then() ---
+
   //.then() handler returns value
   function handlerReturnValue() {
     p1.then((result) => {
       return result + " Done";
     }).then((result) => {
       console.log(result);
-    });
+    }).catch((error) => {
+      console.log(error);
+    }).finally(() => {
+      console.log("Promise Completed");
+    });;
   }
+  handlerReturnValue();
 
   //.then() handler returns new Promise
   function handlerReturnNewPromise() {
     p1.then((result) => {
       return new Promise((resolve, reject) => {
+        // async operation
         resolve(result + "Done");
       });
     }).then((result) => {
       console.log(result);
     });
   }
-  // handlerReturnNewPromise()
+  handlerReturnNewPromise()
 
   // --- async await ---
   async function asyncFuncton() {
@@ -51,4 +47,14 @@ function promise_examples() {
   }
   asyncFuncton();
 }
-// promise_examples();
+promise_examples();
+
+
+
+//--
+
+function Circle(color) {
+  this.color = color;
+  this.getColor = function () { return this.color; };
+}
+const redCircle = new Circle("Red");

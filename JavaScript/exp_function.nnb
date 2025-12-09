@@ -17,7 +17,7 @@
         {
             "language": "javascript",
             "source": [
-                "let val = 1;\r\nconst closure1 = function () {\r\n  console.log(val);\r\n  val = 2;\r\n};\r\nval = 3;\r\nconst closure2 = function () {\r\n  console.log(val);\r\n};\r\nclosure1(); //3\r\nclosure2(); //2\r\n"
+                "let val = 1;\r\nconst func1 = function () {\r\n  console.log(val);\r\n  val = 2;\r\n};\r\nval = 3;\r\nconst func2 = function () {\r\n  console.log(val);\r\n};\r\nfunc1(); //3\r\nfunc2(); //2"
             ],
             "outputs": [
                 {
@@ -37,7 +37,7 @@
         {
             "language": "javascript",
             "source": [
-                "function makeMultiplier(multiplier) {\r\n    return function(x) {\r\n        return multiplier * x;\r\n    };\r\n}\r\nvar doubleAll = makeMultiplier(2);\r\nconsole.log(doubleAll(10)); // 20\r\n\r\ndoubleAll(10)"
+                "function makeMultiplier(multiplier) {\r\n    return function(x) {\r\n        return multiplier * x;\r\n    };\r\n}\r\nvar doubleAll = makeMultiplier(2);\r\nconsole.log(doubleAll(10)); // 20\r\n"
             ],
             "outputs": [
                 {
@@ -57,49 +57,124 @@
         {
             "language": "markdown",
             "source": [
-                "## Thunk"
+                "## var, let"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "// Synchronous Thunk\r\nconst add = (x, y) => x + y;\r\n\r\nconst thunk = () => add(2, 3);\r\n\r\nthunk(); // 5"
+                "for (var i = 0; i < 10; i++) {}\r\n\r\n// is equivalent to\r\nvar i = 0;\r\nwhile (i < 10) {\r\n  i++;\r\n}"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "//Asychronous Thunk\r\nfunction fetchData(fn) {\r\n  fetch(\"https://example.com\")\r\n    .then((response) => response.json())\r\n    .then((json) => fn(json));\r\n}\r\n\r\n// thunk has no parameters\r\nconst asyncThunk = function () {\r\n  return fetchData(function getData(data) {\r\n    console.log(data);\r\n  });\r\n};\r\n\r\nasyncThunk(); //takes no arguments\r\n"
+                "for (let i = 0; i < 10; i++) {}\r\n\r\n// is equivalent to\r\nvar n = 0;\r\nwhile (n < 10) {\r\n  let i = n; // Initialize i with the current value of n\r\n  n++; // Increment n before using it in the next iteration\r\n}"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "for (var i = 0; i < 4; i++) {\r\n    // global scope\r\n    setTimeout(() => console.log(i));\r\n} //4 4 4 4 \r\n\r\nfor (let i = 0; i < 4; i++) {\r\n    // block scope\r\n    setTimeout(() => console.log(i));\r\n}//0 1 2 3"
             ],
             "outputs": []
         },
         {
             "language": "markdown",
             "source": [
-                "## Debouncing"
+                "## call()"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "function debounce(func, timeout = 500) {\r\n  let timer;\r\n  return (...args) => {\r\n    clearTimeout(timer);\r\n    timer = setTimeout(() => {\r\n      func.apply(this, args);\r\n    }, timeout);\r\n  };\r\n}\r\nfunction fetchResults() {\r\n  console.log(\"Fetching input suggestions\");\r\n}\r\nconst processChange = debounce(() => fetchResults());\r\n\r\n<input type=\"text\" onkeyup=\"processChange()\" />"
+                "function greet(a, b) {\r\n    console.log(a, b, this.title);\r\n}\r\n\r\nconst obj = { title: \"Developer\" };\r\n\r\ngreet.call(obj, \"Hi\", \"there\");// console.log(\"Hi\", \"there\", obj.title);\r\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Hello world Developer",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
             "source": [
-                "## Throttling"
+                "## bind()"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "const throttle = (func, limit) => {\r\n  let inThrottle;\r\n  return (...args) => {\r\n    if (!inThrottle) {\r\n      func.apply(this, args);\r\n      inThrottle = true;\r\n      setTimeout(() => (inThrottle = false), limit);\r\n    }\r\n  };\r\n};\r\nwindow.addEventListener(\"scroll\", () => {\r\n  throttle(handleScrollAnimation, 100);\r\n});\r\n"
+                "function area(height) {\r\n    return this.width * height;\r\n}\r\nvar obj = { width: 5 };\r\n\r\n// bind() returns a new function where this == obj\r\nvar bound = area.bind(obj);\r\nconsole.log(bound(4)); // 5 * 4 = 20\r\n\r\n// bind() returns a new function where this == obj and height == 10\r\nvar bondWithInitialHeight = area.bind(obj, 10);\r\nconsole.log(bondWithInitialHeight()); // 5 * 10 = 50"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "20",
+                                "50",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Hoisting\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "console.log(x); // undefined\r\nvar x = 5; // x is initialized and not hoisted\r\n\r\n//is equivalent to\r\nvar x;\r\nconsole.log(x); // undefined\r\nx = 5;"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "5",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## IIFE"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "// Allows the use of 'await' immediately\r\n(async () => {\r\n    const config = await fetchConfiguration();\r\n    // The configuration object is now available only within this scope\r\n    console.log(\"Setup complete.\");\r\n})();"
             ],
             "outputs": []
         }

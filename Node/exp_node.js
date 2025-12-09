@@ -5,154 +5,77 @@ function eventEmitter_example() {
   class MyEmitter extends EventEmitter { }
   const myEmitter = new MyEmitter();
 
-  myEmitter.on("some_event", (a, b) => {
-    console.log(a, b, this); // Prints: a b {}
+  //.on(eventName, listener([...data]))
+  myEmitter.on('some_event', function (x, y) {
+    console.log(x, y, this === myEmitter); // Prints: a b true
   });
-  myEmitter.emit("some_event", "a", "b");
+
+  //.emit(eventName, […data])
+  myEmitter.emit('some_event', 'a', 'b');
 }
 // eventEmitter_example()
 
 // ----- Process Example -----
 function process_example() {
-  process.argv.forEach((element) => {
-    console.log(element); //one two three
-  });
-
   process.stdout.write("Enter:");
   process.stdin.on("data", (input) => {
+    // print all argv
+    process.argv.map((val, index) => {
+      console.log(`${index}: ${val}`);
+    });
+    // print input
     console.log(input.toString().trim());
     process.exit();
   });
 }
+// process_example();
 
-// ---- readline Example -----
-function process_example() {
-  const readline = require("readline");
+// ----- File System Example -----
+async function file_system_Example() {
+  const fsp = require("fs").promises;
 
-  const rl = readline.createInterface(process.stdin, process.stdout);
+  try {
+    // Read the contents of the current directory
+    const files = await fsp.readdir("./");
+    console.log('Files in directory:', files);
 
-  rl.question("How are you? ", (answer) => {
-    console.log(`I am ${answer} too`);
-  });
+    // Create a new directory
+    await fsp.mkdir('tmp', { recursive: true });
 
-  rl.setPrompt("'How are you? ");
-  rl.prompt();
-  rl.on("line", (saying) => {
-    console.log(saying.trim());
-  });
-}
+    // Write to a file
+    const initialContent = "Hello, world!";
+    await fsp.writeFile('tmp/exp_fsd.md', initialContent, 'utf8');
 
-// ----- Read/Write Files -----
-function readWriteFiles_example() {
-  const fs = require("fs");
+    // Append to the file
+    const appendContent = `\n======`;
+    await fsp.appendFile('tmp/exp_fsd.md', appendContent, 'utf8');
+    // Read the file contents
+    const data = await fsp.readFile('tmp/exp_fsd.md', 'utf8');
+    console.log('File contents read:', data);
 
-  var files = fs.readdirSync("./"); //sync
-  fs.readdir("./", function (err, files) {
-    //async
-    console.log(files);
-  });
 
-  fs.writeFile("demo.md", md.trim(), (err) => {
-    if (err) {
-      console.log("file creating error");
-    }
-  });
-
-  fs.appendFile("demo.md", `======`, (err) => {
-    if (err) {
-      console.log("file appending error");
-    }
-  });
-
-  fs.readFile("demo.md", function (err, data) {
-    console.log(data);
-  });
-
-  var new_directory = "lib";
-  if (!fs.existsSync(new_directory)) {
-    fs.mkdir(new_directory, function (err) {
-      if (err) {
-        console.log("directory exists");
-      }
-    });
+  } catch (err) {
+    console.error('Error during file operations:', err);
   }
 
-  // --- stream IO ---
-  var stream = fs.createReadStream("./demo.md", "UTF-8");
-  var data = "";
-  stream.once("data", () => {
-    console.log("Start Reading\n");
-  });
+  // ----- Stream Example -----
+  try {
+    const fs = require("fs");
+    const writeStream = fs.createWriteStream("tmp/exp_stream.md", "UTF-8");
+    writeStream.write("something");
+    writeStream.end();
 
-  stream.on("data", (chunck) => {
-    data += chunck;
-  });
-
-  stream.on("end", (chunck) => {
-    console.log("\n Finish Reading\n");
-  });
-
-  stream = fs.createWriteStream("./demo.md", "UTF-8");
-  stream.write("something");
-  stream.close();
+    const readStream = fs.createReadStream('tmp/exp_stream.md', 'utf8');
+    // for await...of consumes chunks until the stream ends
+    for await (const chunk of readStream) {
+      console.log(chunk.toString('utf8'));
+    }
+  } catch (err) {
+    console.error('Stream error:', err.message);
+  }
 }
+file_system_Example();
 
-// ----- HTTP Module -----
-function httpModule_example() {
-  const https = require("https");
-  const fs = require("fs");
-
-  const options = {
-    hostname: "example.com",
-    port: 443, //https prot
-    path: "/todos",
-    method: "GET",
-  };
-
-  const req = https.request(options, (res) => {
-    console.log(`statusCode: ${res.statusCode}`);
-    res.on("data", (data) => {
-      //data is a stream object
-      responseBody += data;
-      process.stdout.write(data);
-    });
-  });
-
-  req.on("error", (error) => {
-    console.error(error);
-  });
-
-  req.end();
-
-  // --- Server Example ---
-  https
-    .createServer((request, response) => {
-      if (request.method == "GET") {
-        response.writeHead(200, { "Content-Type": "text/html" });
-        fs.createReadStream("./public/form.html", "UTF-8").pipe(response);
-      } else if (request.method == "POST") {
-        var body = "";
-        request.on("data", (chunck) => {
-          body += chunck;
-        });
-        request.on("end", () => {
-          response.writeHead(200, { "Content-Type": "text/html" });
-          response.end(`
-                <!DOTYPE html>
-                <html>
-                    <head>
-                        <title>Form Result</title>
-                    </head>
-                    <body>
-                        <p>${body}</p>
-                    </body>
-                </html>
-            `);
-        });
-      }
-    })
-    .listen(3000);
-}
 
 
 

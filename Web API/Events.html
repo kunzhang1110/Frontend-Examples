@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<div style="width: 50%;">
+  <h3>Propagaton and stopPropagation()</h3>
+  <p>Click Child Element</p>
+  <div onclick="parentFunc()" style="border: 2px solid #444; padding: 8px;">
+    DIV Parent
+    <div onclick="childFunc(event)" style="border: 2px solid #888; padding: 8px; ">
+      DIV Child
+    </div>
+  </div>
+  <script>
+    function childFunc(event) {
+      alert("DIV Child");
+      event.stopPropagation();
+    }
+    function parentFunc() {
+      alert("DIV Parent");
+    }
+
+  </script>
+</div>
+
+<div>
+  <h3>Click and Download</h3>
+  <div><input type="text" value="Enter..." id="clickInput" style="margin-bottom: 5px;" /></div>
+  <button onclick="clickDowanload(event)">Download</button>
+  <script>
+    function clickDowanload(e) {
+      const clickInput = document.getElementById("clickInput");
+
+      //Create the Blob from the content
+      const content = clickInput.value;
+      const blob = new Blob([content], { type: "text/markdown" });
+
+      //Create the temporary link element
+      const a = document.createElement("a");
+      a.download = `title.md`;
+      a.href = URL.createObjectURL(blob);
+
+      //Trigger the download by simulating click
+      a.click();
+
+      //Clean up the URL object
+      setTimeout(() => URL.revokeObjectURL(a.href), 5 * 1000);
+    }
+  </script>
+
+  <h3>Click and Copy to Clipboard</h3>
+  <button onclick="clickCopy(event)">Copy to Clipboard</button>
+  <script>
+    function clickCopy(e) {
+      const clickInput = document.getElementById("clickInput");
+      navigator.clipboard.writeText(clickInput.value);
+    }
+  </script>
+</div>
+
+</html>

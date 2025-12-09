@@ -87,9 +87,9 @@ $var: red, 2px;
 
 //@extend
 .foo {
-    color: red;
+  color: red;
 }
 .bar {
-    @extend .foo;
-    margin:auto;
+  @extend .foo;
+  margin: auto;
 }

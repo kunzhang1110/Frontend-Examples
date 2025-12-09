@@ -5,8 +5,8 @@
 
 # Use
 
-    node node_examples.js
-    node express_examples.js
+    node exp_node.js
+    node exp_express.js
 
 ## express_examples.js
 - localhost:3000 in browser

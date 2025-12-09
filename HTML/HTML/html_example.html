@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <h2>Description List</h2>
+  <dl>
+    <dt>description term 1</dt>
+    <dd>description definition 1</dd>
+    <dt>description term 2</dt>
+    <dd>description definition 2</dd>
+  </dl>
+
+  <hr />
+
+  <h2>Table</h2>
+  <table>
+    <colgroup>
+      <col span="1" style="background-color:red;" />
+    </colgroup>
+    <thead>
+      <tr>
+        <th>H1</th>
+        <th>H2</th>
+        <th>H3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>C11</td>
+        <td>C12</td>
+        <td>C13</td>
+      </tr>
+      <tr>
+        <td>C21</td>
+        <td colspan="2">C22-C23</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr />
+
+  <h2>Image</h2>
+
+  <img src="./assets/MSFT.png" width="100px" height="100px" alt="alt txt" />
+  <h2>Clickable &lt;map&gt;</h2>
+  <map name="workmap">
+    <area shape="circle" coords="75,75,30" alt="web" href="http://www.disney.com" />
+    <img src="./assets/DIS.png" alt="" usemap="#workmap" />
+  </map>
+
+  <hr />
+
+  <h2>Forms</h2>
+  <form action="/action_page.php">
+    Ticker:<br />
+    <input type="text" name="ticker" /><br />
+    Quantity:<br />
+    <input type="text" name="quantity" /><br />
+    <input type="submit" value="Submit" />
+  </form>
+  <h3> Radio Buttons</h3>
+  <form action="/action_page.php">
+    <input type="radio" name="gender" id="male" value="male">
+    <label for="male">Male</label><br>
+    <input type="radio" name="gender" id="female" value="female">
+    <label for="female">Female</label><br>
+  </form>
+  <h3> Checkboxes</h3>
+  <form>
+    <input type="checkbox" name="vehicle1" value="Honda" /> Honda<br />
+    <input type="checkbox" name="vehicle2" value="Ford" /> Ford
+  </form>
+  <h3>Select List &lt;select&gt;</h3>
+  <select>
+    <optgroup label="NDQ">
+      <option value="MSFT">MSFT</option>
+      <option value="NVDA">NVDA</option>
+    </optgroup>
+    <optgroup label="ASX">
+      <option value="CBA">CBA</option>
+      <option value="BHP">BHP</option>
+    </optgroup>
+  </select>
+  <h3>Data List &lt;datalist&gt;</h3>
+  <datalist id="tickers">
+    <option value="MSFT"></option>
+    <option value="NVDA"></option>
+    <option value="CBA"></option>
+    <option value="BHP"></option>
+  </datalist>
+  <input list="tickers" name="ticker" />
+
+  <hr />
+
+  <h2>SVG</h2>
+  <svg>
+    <path d="M150 0 L75 200 L225 200 Z" />
+  </svg>
+  <h2>Canvas</h2>
+  <canvas id="myCanvas" width="300" height="250" style="border:1px solid #d3d3d3;"></canvas>
+  <script>
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+
+    ctx.beginPath();      // Start a new path
+    ctx.moveTo(150, 0);   // Move to starting point (150, 0)
+    ctx.lineTo(75, 200);  // Line to (75, 200)
+    ctx.lineTo(225, 200); // Line to (225, 200)
+    ctx.closePath();      // Close path back to (150, 0)
+
+    ctx.stroke();         // Draw the outline
+    ctx.fillStyle = "#000000"; // Set fill color to black
+    ctx.fill();              // Fill the triangle
+  </script>
+
+  <hr />
+  <h3>iframe</h3>
+  <iframe src="https://www.example.com" width="300" height="200" title="Example Iframe"></iframe>
+</body>
+
+</html>

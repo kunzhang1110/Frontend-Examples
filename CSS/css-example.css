@@ -1,6 +1,12 @@
-/* Selectors */
+/* Pseudo Class Selector */
 a:hover div:nth-child(2) {
   color: red;
+}
+
+/* Pseudo-element Selector */
+#pseudo-element::after {
+  content: " - End";
+  color: green;
 }
 
 /* position: relative */
@@ -29,15 +35,10 @@ a:hover div:nth-child(2) {
   position: float;
   float: right;
 }
+
 #position-float-left {
   position: float;
   float: left;
-}
-.clear-left {
-  clear: left;
-}
-.clear-both {
-  clear: both;
 }
 
 /* display: flex */
@@ -47,6 +48,7 @@ a:hover div:nth-child(2) {
   flex-direction: row;
   justify-content: center;
   align-items: flex-end;
+  align-content: space-around;
 }
 .flex-item-1 {
   flex-grow: 1;
@@ -57,7 +59,7 @@ a:hover div:nth-child(2) {
   flex-basis: 120px;
 }
 .flex-item-3 {
-  flex-grow: 2;
+  flex-grow: 5;
   background-color: aquamarine;
 }
 
@@ -106,14 +108,12 @@ a:hover div:nth-child(2) {
 }
 
 .transform-translate-center {
-  position: fixed; /*any non-static*/
+  position: relative; /* any non-static */
   top: 50%;
   left: 50%;
   transform-box: content-box;
-  transform: translateX(-50%);
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%);
 }
-
 /* basic styles */
 * {
   font-family: Arial, Helvetica, sans-serif;
@@ -128,4 +128,13 @@ a:hover div:nth-child(2) {
   border: solid 1px red;
   height: 100px;
   width: 100px;
+}
+
+hr {
+  margin-top: 100px;
+}
+
+div[attr-a]::after {
+  content: attr(attr-a);
+  /* content: "some-data"; */
 }

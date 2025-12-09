@@ -1,90 +1,85 @@
 // ----- Prototype Examples -----
 function prototype_examples() {
-  //create a function
-  let AnyFunc = function () {
-    console.log("In AnyFunc");
-    this.name = "Kun";
-    return this.name;
-  };
-  console.log(`${AnyFunc.__proto__ == Function.prototype}`);
-  console.log(`${AnyFunc.prototype.constructor == AnyFunc}`);
-  console.log(`${AnyFunc.prototype.__proto__ == Object.prototype}`);
-
-  //call AnyFunc without new
-  AnyFunc(); //this in AnyFun() == globalThis
-  console.log(globalThis.name);
-
-  //create an object with new -- AnyFun() as constructor
-  let foo = new AnyFunc();
-  console.log(`${foo.__proto__ == AnyFunc.prototype}`);
-  console.log(foo.name);
-
-  //static method
-  AnyFunc.StaticMethodName = function () {
-    console.log("Static Method - " + this.name);
-  };
-  AnyFunc.StaticMethodName(); //this == AnyFunc; AnyFunc does not have .name but its __proto__ Function.prototype does
-
-  //instance method
-  AnyFunc.prototype.InstanceMethodName = function () {
-    console.log("Instance Method - " + this.name);
-  };
-  foo.InstanceMethodName();
-
-  //use Object.create
-  let bar = Object.create(AnyFunc); //AnyFunc as proto
-  bar.StaticMethodName();
-  bar.__proto__(); //
-
-  //Add properties to .prototype
-  function Bag(...list) {
-    this.values = list;
+  console.log("---- Function Definition ----");
+  function Circle(color) {
+    this.color = color;
+    this.getColor = function () { return this.color; };
   }
-  Bag.prototype = {
-    ...Bag.prototype,
-    get Count() {
-      return this.values.length;
-    },
+  console.log(`${Circle.__proto__ == Function.prototype}`); //true
+  console.log(`${Circle.prototype.constructor == Circle}`); //true
+  console.log(`${Circle.prototype.__proto__ == Object.prototype}`); //true
+
+  console.log("---- Call Circle without new ----");
+  Circle("green"); //this in Circle() == globalThis
+  console.log(globalThis.color); //green
+
+  console.log("---- Call new Circle() ----");
+  const redCircle = new Circle("Red");
+  console.log(`${redCircle.__proto__ == Circle.prototype}`); //true
+  console.log(redCircle.color); //Red
+
+  console.log("---- Static method ----");
+  Circle.StaticMethod = function () {
+    console.log("Static Method - " + this.color); //undefined
   };
-  Bag.prototype.PI = 3.14;
-  let a = new Bag(1, 2, 3);
-  console.log(a.Count);
-  console.log(a.PI);
-}
+  Circle.StaticMethod(); //this == Circle;does not have .color
 
-// ----- Multiple prototype inheritance -----
-function multipleInheritance() {
-  function A() {}
-  function B() {}
-  A.prototype.A = 1;
-  B.prototype.B = 2;
-  function Child() {}
-  Child.prototype = { ...A.prototype, ...B.prototype };
-  let c = new Child();
-  console.log(c.B);
-}
+  console.log("---- Instance method ----");
+  Circle.prototype.InstanceMethod = function () {
+    console.log("Instance Method - " + this.color); //Red
+  };
+  redCircle.InstanceMethod();
 
-// ----- Class Mix-in -----
-function classMixins() {
-  //
-  let mixinA = function (Base) {
-    return class extends Base {
-      mixinAMethod() {
-        console.log("mixinA");
-      }
-    };
+  console.log("---- Object.create() ----");
+  const ocCircle = Object.create(Circle); //Use Circle as proto
+  ocCircle.StaticMethod(); // Can call Circle's static method
+
+}
+// prototype_examples();
+
+function prototype_chain_examples() {
+  console.log("---- Prototype Chain ----");
+  function Circle(color) {
+    this.color = color;
+  }
+
+  const redCircle = new Circle("Red");
+  // redCircle.printColor(); //Error, not defined
+
+  // Add method to prototype
+  Circle.prototype.printColor = function () {
+    console.log(this.color);
+  }
+  redCircle.printColor(); //Red
+}
+// prototype_chain_examples();
+
+
+function inheritance_examples() {
+  console.log("---- Prototype Inheritance ----");
+  function Shape(color) {
+    this.color = color;
+  }
+
+  Shape.prototype.printColor = function () { //superclass method
+    console.log(this.color);
   };
 
-  let mixinB = function (Base) {
-    return class extends Base {
-      mixinBMethod() {
-        console.log("mixinB");
-      }
-    };
-  };
+  function Circle(radius, color) {
+    Shape.call(this, color); // Call super constructor, this.color = color
+    this.radius = radius;
+  }
 
-  class Foo {}
-  class Bar extends mixinA(mixinB(Foo)) {}
-  new Bar().mixinAMethod();
-  new Bar().mixinBMethod();
+  //Creates an empty object with its internal [[Prototype]] to Shape.prototype
+  Circle.prototype = Object.create(Shape.prototype)
+
+  // Set constructor property back to Circle
+  Circle.prototype.constructor = Circle;
+
+  const blueCircle = new Circle(1, 'blue');
+  blueCircle.printColor();
 }
+inheritance_examples();
+
+
+

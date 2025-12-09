@@ -1,0 +1,199 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Spread Syntax"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const numbers = [1, 2, 3];\r\n\r\n//array\r\nvar numbers_all = [0, ...numbers, 4, 5] //same as [ 0, 1, 2, 3, 4, 5 ]\r\n\r\n//object literal\r\nvar obj1 = { x: 1, y: 2 };\r\nvar obj2 = { y: 3, z: 4 };\r\nvar clonedObj = { ...obj1 }; // same as { x: 1, y: 2 }\r\nvar mergedObj = { ...obj1, ...obj2 }; //same as { x: 1, y:2, y: 3, z: 4 }\r\nconsole.log(mergedObj) //{x: 1, y: 3, z: 4 }\r\n\r\n//function call\r\nMath.max.apply(null, numbers); //\r\nMath.max(...numbers); // same as Math.max(1, 2, 3)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ x: 1, y: 3, z: 4 }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Destructuring"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Array Destructuring"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//swapping variables\r\nvar a = 1;\r\nvar b = 3;\r\n\r\n[a, b] = [b, a];\r\nconsole.log(`${a} ${b}`)  // 3 1"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "3 1",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//rest '...'\r\nvar [g, ...restArray] = [1, 2, 3, 4]\r\n\r\nconsole.log(restArray);  // 2,3,4\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "[ 2, 3, 4 ]",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "### Object Destructuring"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//basic assignment\r\nlet o = {p: 42, q: true};\r\nlet {p, q} = o;\r\nconsole.log(`${p} ${q}`)  // 42 true\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "42 true",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//assigning new names\r\nlet o1 = {p: 42, q: true};\r\nvar {p: foo, q: bar} = o1;\r\nconsole.log(`${foo} ${bar}`)  // 42 true"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "42 true",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//default values\r\nvar { a = 10, b = 5 } = { a: 3 };\r\nconsole.log(a, b);  // 3 5"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "3 5",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//Unpacking fields from objects passed as a function parameter\r\nconst user = {\r\n    displayName: 'kz',\r\n    fullName: {\r\n        firstName: 'Kun',\r\n        lastName: 'Zhang'\r\n    }\r\n}\r\n\r\nfunction unpack({ displayName, fullName: { firstName: name } }) {\r\n    return `${displayName} is ${name}`;\r\n}\r\nconsole.log(unpack(user));  // \"kz is Kun\"   \r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "kz is Kun",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Rest Syntax"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "var [g, ...restArray] = [1, 2, 3, 4]\r\nconsole.log(`${restArray}`)  // [2,3,4]\r\n\r\nvar { p1, ...restObj } = { p1: 42, q1: true, r1: \"a\" };\r\nconsole.log(restObj)//{q1: true, r1: 'a'}"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.error",
+                            "value": {
+                                "name": "Error",
+                                "message": "Failed to generate code object, Cannot read properties of undefined (reading 'type')",
+                                "stack": ""
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

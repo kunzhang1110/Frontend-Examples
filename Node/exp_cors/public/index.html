@@ -8,17 +8,18 @@
 
 <body>
     <h1>SOP - Requests</h1>
-    <div>Open this page using a live server to simulate a cross-origin situation.</div>
+    <div>Open this page using a live server on http://127.0.0.1:5500/ to simulate a cross-origin situation.</div>
     <div>Open this page via http://localhost:3000 to simulate a same-origin situation.</div>
     <div>Open dev console</div>
     <script>
+        // Simple request: GET
         fetch('http://localhost:3000/api/getData')
             .then(response => response.json())
-            .then(data => console.log("Success:", data))
-            .catch(error => console.error("Error:", error));
+            .then(data => console.log("GET Success:", data))
+            .catch(error => console.error("GET Error:", error));
 
-        // Sending JSON data
-        const postData = {
+        // Non-simple request: POST with JSON
+        const jsonData = {
             name: "Kun",
             email: "kun@example.com"
         };
@@ -28,19 +29,15 @@
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(postData)
+            body: JSON.stringify(jsonData)
         })
             .then(response => response.json())
             .then(data => console.log("POST JSON Success:", data))
             .catch(error => console.error("POST JSON Error:", error));
 
-        // Sending form data
+        // Simple request: POST with FormData
         const formData = new FormData();
-        for (const key in postData) {
-            if (postData.hasOwnProperty(key)) {
-                formData.append(key, postData[key]);
-            }
-        }
+        Object.entries(jsonData).forEach(([key, value]) => formData.append(key, value));
 
         fetch('http://localhost:3000/api/postData', {
             method: 'POST',
@@ -54,18 +51,18 @@
     <h1>SOP - DOM Access Example</h1>
     <button id="open">Open Other Origin</button>
     <script>
-        document.getElementById("open").onclick = () => {
-            const popup = window.open("http://127.0.0.1:5500/exp_cors/public/index.html");
+document.getElementById("open").onclick = () => {
+    const popup = window.open("http://127.0.0.1:5500/exp_cors/public/index.html");
 
-            setTimeout(() => {
-                try {
-                    const text = popup.document.body.innerText;
-                    console.log("Accessed content:", text);
-                } catch (e) {
-                    console.error("SOP violation: Cannot access DOM from different origin.");
-                }
-            }, 1000); // wait for popup to load
-        };
+    setTimeout(() => {
+        try {
+            const text = popup.document.body.innerText; // Attempt to access DOM of different origin
+            console.log("Accessed content:", text);
+        } catch (e) {
+            console.error("SOP violation: Cannot access DOM from different origin.");
+        }
+    }, 1000); // wait for popup to load
+};
     </script>
 </body>
 

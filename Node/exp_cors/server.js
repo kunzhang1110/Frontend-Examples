@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const cors = require("cors");
 
-const isCorsEnabled = false;
+const isCorsEnabled = false; // toggle CORS
 
 const app = express();
 
@@ -13,15 +13,17 @@ app.use(express.urlencoded({ extended: true }));
 
 if (isCorsEnabled) {
   const corsOptions = {
-    origin: "http://127.0.0.1:5500", // allow this origin only
-    optionsSuccessStatus: 200, // some legacy browsers choke on 204
+    origin: "http://127.0.0.1:5500",// can be a string/regex/array.
+    optionsSuccessStatus: 200,// Status code for successful Preflight requests
   };
   app.use(cors(corsOptions));
+  // Alternatively, use app.use(cors()); to allow ALL origins (*)
 }
 
 app.get("/api/getData", (req, res) => {
+  console.log("GET request received");
   res.json({ message: "Data" });
-  console.log("Data sent to client");
+  console.log("GET request responded");
 });
 
 app.post("/api/postData", (req, res, next) => {
@@ -32,6 +34,7 @@ app.post("/api/postData", (req, res, next) => {
     upload.none()(req, res, (err) => {
       console.log("FormData received:", req.body);
       res.json({ message: "Form data received", data: req.body });
+      console.log("FormData request responded");
     });
     return;
   }
@@ -40,6 +43,7 @@ app.post("/api/postData", (req, res, next) => {
   if (contentType.startsWith("application/json")) {
     console.log("JSON received:", req.body);
     res.json({ message: "JSON data received", data: req.body });
+    console.log("JSON request responded");
     return;
   }
   res.status(415).json({ error: "Unsupported Content-Type" });

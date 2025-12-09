@@ -3,6 +3,16 @@
     <!-- definition of simple elements -->
     <xs:element name="name" type="xs:string" />
 
+    <!-- definition of simple elements with restriction -->
+    <xs:element name="price">
+        <xs:simpleType>
+            <xs:restriction base="xs:integer">
+                <xs:minInclusive value="0" />
+                <xs:maxInclusive value="2000" />
+            </xs:restriction>
+        </xs:simpleType>
+    </xs:element>
+
     <!-- definition of attributes -->
     <xs:attribute name="exchange" type="xs:string" />
 
@@ -18,7 +28,9 @@
             <xs:sequence>
                 <xs:element ref="ticker" minOccurs="1" />
                 <xs:element ref="name" />
+                <xs:element ref="price" />
             </xs:sequence>
+            <xs:attribute name="listed" type="xs:boolean" use="required" />
         </xs:complexType>
     </xs:element>
 

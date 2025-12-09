@@ -1,0 +1,107 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Class"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## static and instance members"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "class Shape {\r\n    color = \"\";\r\n    constructor(color) {\r\n        this.color = color;\r\n    }\r\n    printColor() { console.log(this.color); }\r\n    static printStatic() { console.log(\"static\"); }\r\n}\r\n\r\nconst sh = new Shape(\"red\");\r\nsh.printColor(); //instance method\r\nShape.printStatic(); //static method\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "red",
+                                "static",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Private members"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "class Shape {\r\n    #color = \"\";\r\n\r\n    constructor(color) {\r\n        this.#color = color;\r\n    }\r\n\r\n    #printPrivate() { console.log(this.#color); }\r\n    printPublic() { this.#printPrivate(); }\r\n\r\n    get color() { return this.#color }\r\n    set color(c) { this.#color = c; }\r\n}\r\nconst sh = new Shape(\"red\");\r\nsh.printPublic(); //instance method\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "red",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Inheritance"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "class Circle extends Shape {\r\n    constructor(radius, color) {\r\n        super(color);\r\n        this.radius = radius;\r\n    }\r\n}\r\nconst cir = new Circle(5, \"blue\");\r\ncir.printPublic(); //inherited from Shape\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "blue",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Mix-in"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "typescript",
+            "source": [
+                "const mixinA = function (Base) {\r\n    return class extends Base {\r\n        mixinAMethod() {\r\n            console.log(\"mixinA\");\r\n        }\r\n    };\r\n};\r\n\r\nconst mixinB = function (Base) {\r\n    return class extends Base {\r\n        mixinBMethod() {\r\n            console.log(\"mixinB\");\r\n        }\r\n    };\r\n};\r\n\r\nclass Foo { }\r\nclass Bar extends mixinA(mixinB(Foo)) { }\r\nnew Bar().mixinAMethod();\r\nnew Bar().mixinBMethod();\r\n\r\n"
+            ],
+            "outputs": []
+        }
+    ]
+}

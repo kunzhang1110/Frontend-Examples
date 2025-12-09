@@ -10,14 +10,14 @@
         {
             "language": "markdown",
             "source": [
-                "## Spread Syntax"
+                "## delete operator"
             ],
             "outputs": []
         },
         {
             "language": "javascript",
             "source": [
-                "const numbers = [1, 2, 3];\r\n\r\n//function call\r\nMath.max.apply(null, numbers); //\r\nMath.max(...numbers); // same as Math.max(1, 2, 3)\r\n\r\n//array\r\nvar numbers_all = [0, ...numbers, 4, 5] //same as [ 0, 1, 2, 3, 4, 5 ]\r\n\r\n//object literal\r\nvar obj1 = {x: 1, y: 2};\r\nvar obj2 = {y:3, z: 4};\r\nvar clonedObj = {...obj1}; // same as { x: 1, y: 2 }\r\nvar mergedObj = {...obj1, ... obj2}; //same as { x: 1, y:2, y: 3, z: 4 }\r\nconsole.log(mergedObj) //{x: 1, y: 3, z: 4 }\r\n"
+                "var user = { name: \"Amy\", age: 20 };\r\ndelete user.age; //{ name: 'Amy' }\r\nvar arr = [1, 2, 3];\r\ndelete arr[1]; //[ 1, undefined, 3 ]\r\n"
             ],
             "outputs": [
                 {
@@ -25,144 +25,18 @@
                         {
                             "mime": "application/vnd.code.notebook.stdout",
                             "value": [
-                                "{ x: 1, y: 3, z: 4 }",
                                 "",
                                 ""
                             ]
                         }
                     ]
-                }
-            ]
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "## Destructuring Assignment"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "### Array Destructuring"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "//swapping variables\r\nvar a = 1;\r\nvar b = 3;\r\n\r\n[a, b] = [b, a];\r\nconsole.log(`${a} ${b}`)  // 3 1\r\n"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "//rest '...'\r\nvar [g, ...restArray] = [1, 2, 3, 4]\r\n\r\nconsole.log(max(rest));  // 2,3,4\r\n"
-            ],
-            "outputs": [
+                },
                 {
                     "items": [
                         {
-                            "mime": "application/vnd.code.notebook.stdout",
+                            "mime": "text/plain",
                             "value": [
-                                "NaN",
-                                "",
-                                ""
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "### Object Destructuring"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "//basic assignment\r\nlet o = {p: 42, q: true};\r\nlet {p, q} = o;\r\nconsole.log(`${p} ${q}`)  // 42 true\r\n"
-            ],
-            "outputs": [
-                {
-                    "items": [
-                        {
-                            "mime": "application/vnd.code.notebook.stdout",
-                            "value": [
-                                "42 true",
-                                "",
-                                ""
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "//assigning new names\r\nlet o1 = {p: 42, q: true};\r\nvar {p: foo, q: bar} = o1;\r\nconsole.log(`${foo} ${bar}`)  // 42 true"
-            ],
-            "outputs": [
-                {
-                    "items": [
-                        {
-                            "mime": "application/vnd.code.notebook.stdout",
-                            "value": [
-                                "42 true",
-                                "",
-                                ""
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "//Unpacking fields from objects passed as a function parameter\r\nconst user = {\r\n    displayName: 'kz',\r\n    fullName: {\r\n        firstName: 'Kun',\r\n        lastName: 'Zhang'\r\n    }\r\n}\r\n\r\nfunction unpack({displayName, fullName: {firstName: name}}) {\r\n    return `${displayName} is ${name}`;\r\n}\r\nconsole.log(unpack(user));  // \"kz is Kun\"   \r\n  "
-            ],
-            "outputs": [
-                {
-                    "items": [
-                        {
-                            "mime": "application/vnd.code.notebook.stdout",
-                            "value": [
-                                "kz is Kun",
-                                "",
-                                ""
-                            ]
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "## Hoisting\r\n"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "console.log(x); // undefined\r\nvar x = 5;\r\n\r\n//is equivalent to\r\nvar x;\r\nconsole.log(x); // undefined\r\nx = 5;\r\n"
-            ],
-            "outputs": [
-                {
-                    "items": [
-                        {
-                            "mime": "application/vnd.code.notebook.stdout",
-                            "value": [
-                                "undefined",
-                                "",
-                                ""
+                                "\u001b[33mtrue\u001b[39m"
                             ]
                         }
                     ]
@@ -186,7 +60,7 @@
         {
             "language": "markdown",
             "source": [
-                "## Display data in a table using console object"
+                "## console.table()"
             ],
             "outputs": []
         },
@@ -195,84 +69,25 @@
             "source": [
                 "const users = [\r\n    { name: \"John\", id: 1, city: \"Delhi\" },\r\n    { name: \"Max\", id: 2, city: \"London\" },\r\n  ];\r\n  console.table(users);\r\n  "
             ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "## Mixin in Javascript"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "// mixin\r\nlet myMixin = {\r\n    log() {\r\n      console.log(` ${this.name}`);\r\n    },\r\n  };\r\n  \r\n  // usage:\r\n  class User {\r\n    constructor(name) {\r\n      this.name = name;\r\n    }\r\n  }\r\n  \r\n  // copy the methods\r\n  Object.assign(User.prototype, myMixin);\r\n  \r\n  new User(\"Amy\").log();\r\n  "
-            ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "## Example: var, let and event loop"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "for (var i = 0; i < 10; i++) {}\r\n\r\n// is equivalent to\r\nvar i = 0;\r\nwhile (i < 10) {\r\n  i++;\r\n}"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "for (let i = 0; i < 10; i++) {}\r\n// is equivalent to\r\nvar n = 0;\r\nwhile (n < 10) {\r\n  let i = n; // Initialize i with the current value of n\r\n  n++; // Increment n before using it in the next iteration\r\n}"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "### Closure Example"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "var array = [];\r\nfor (var i = 0; i < 5; i++) { //var i is globally scoped and is 5 after the loop\r\n  array.push({\r\n    onclick: function () {\r\n      console.log(\"array: \", i); //define here has closure and can access i\r\n    },\r\n  });\r\n}\r\narray[0].onclick(); // array: 5\r\narray[1].onclick(); // array: 5"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "### Async Example"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "for (var i = 0; i < 4; i++) {\r\n    // global scope\r\n    setTimeout(() => console.log(i));\r\n  } //4 4 4 4 \r\n  \r\n  for (let i = 0; i < 4; i++) {\r\n    // block scope\r\n    setTimeout(() => console.log(i));\r\n  }//0 1 2 3"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "markdown",
-            "source": [
-                "## Get params from URL"
-            ],
-            "outputs": []
-        },
-        {
-            "language": "javascript",
-            "source": [
-                "let urlString = \"http://www.some-domain.com/about.html?x=1&y=2&z=3\"; //window.location.href\r\nlet url = new URL(urlString);\r\nlet parameterZ = url.searchParams.get(\"z\");\r\nconsole.log(parameterZ); // 3"
-            ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "┌─────────┬────────┬────┬──────────┐",
+                                "│ (index) │ name   │ id │ city     │",
+                                "├─────────┼────────┼────┼──────────┤",
+                                "│ 0       │ 'John' │ 1  │ 'Delhi'  │",
+                                "│ 1       │ 'Max'  │ 2  │ 'London' │",
+                                "└─────────┴────────┴────┴──────────┘",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
         },
         {
             "language": "markdown",
@@ -284,9 +99,31 @@
         {
             "language": "javascript",
             "source": [
-                "function logDecorator(target, key, descriptor) {\r\n    const originalMethod = descriptor.value;\r\n    descriptor.value = function (...args) {\r\n      console.log(`Calling ${key} with arguments: ${args}`);\r\n      return originalMethod.apply(this, args);\r\n    };\r\n    return descriptor;\r\n  }\r\n  \r\n  class MyClass {\r\n    @logDecorator\r\n    myMethod(x, y) {\r\n      return x + y;\r\n    }\r\n  }\r\n  \r\n  const obj = new MyClass();\r\n  \r\n  console.log(obj.myMethod(3, 5)); // Output: Calling myMethod with arguments: 3,5\r\n                                    //8\r\n  "
+                "function log(value, context) {\r\n  const methodName = context.name;\r\n  // value is the original method\r\n\r\n  function newMethod(...args) {\r\n    console.log(`[LOG] Starting call to ${methodName} with arguments:`, args);\r\n    const result = value.call(this, ...args);\r\n    console.log(`[LOG] Finished call to ${methodName}. Result:`, result);\r\n    return result;\r\n  }\r\n\r\n  return newMethod; // Returns the enhanced method\r\n}\r\n\r\nclass Calculator {\r\n  // Apply the decorator here\r\n  @log\r\n  add(a, b) {\r\n    return a + b;\r\n  }\r\n}\r\n\r\nconst calc = new Calculator();\r\ncalc.add(10, 5); // logs 15\r\n\r\n"
             ],
-            "outputs": []
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "items": [
+                        {
+                            "mime": "text/plain",
+                            "value": [
+                                "\u001b[33m15\u001b[39m"
+                            ]
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

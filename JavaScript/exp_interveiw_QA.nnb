@@ -1,0 +1,80 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "## WeakMap\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let weakMap = new WeakMap();\r\n\r\n{\r\n  let keyObj = { key: 1 };\r\n  weakMap.set(keyObj, \"Amy\");\r\n  console.log(weakMap.get(keyObj)); //true\r\n}\r\n// 'obj' goes out of scope and is only weakly referenced and is eligible for garbage collection.\r\nconsole.log(weakMap.get(obj)); //undefined\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "Amy",
+                                "undefined",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let x = \"5\";\r\nlet y = +x; // y is 5\r\nconsole.log(typeof y); // \"number\""
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "number",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Debouncing\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function debounce(func, timeout = 500) {\r\n  let timer;\r\n  return function (...args) {\r\n    clearTimeout(timer);\r\n    timer = setTimeout(() => {\r\n      func.call(this, ...args);\r\n    }, timeout);\r\n  };\r\n}\r\n\r\nconst button = document.querySelector('button');\r\n\r\nfunction handleClick() {\r\n  console.log(this.textContent); // refers to the button\r\n}\r\n\r\nconst debouncedClick = debounce(handleClick, 500);\r\n\r\nbutton.addEventListener('click', debouncedClick);"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Throttling\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "function throttle(func, limit) {\r\n  let lastCall = 0;\r\n  return function (...args) {\r\n    const now = Date.now();\r\n    if (now - lastCall >= limit) {\r\n      lastCall = now;\r\n      func.apply(this, args);\r\n    }\r\n  };\r\n}\r\n\r\n// Example: scroll event\r\nwindow.addEventListener('scroll', throttle(() => {\r\n  console.log('Scroll event fired');\r\n}, 1000));"
+            ],
+            "outputs": []
+        }
+    ]
+}

@@ -1,0 +1,208 @@
+{
+    "cells": [
+        {
+            "language": "markdown",
+            "source": [
+                "# Array"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## slice()"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let arr = [1, 2, 3, 4, 5];\r\nlet arr1 = arr.slice(0, 2); // returns [1,2]\r\nlet arr2 = arr.slice(2, 3); // returns [3]"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## splice()"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "let arr1 = [1, 2, 3, 4, 5];\r\nlet arr2 = [1, 2, 3, 4, 5];\r\nlet arr3 = [1, 2, 3, 4, 5];\r\n\r\n// returns [1, 2]; original array: [3, 4, 5]\r\nlet arr1Result = arr1.splice(0, 2);\r\n\r\n// returns [4, 5]; original array: [1, 2, 3]\r\nlet arr2Result = arr2.splice(3);\r\n\r\n//returns [4]; original array: [1, 2, 3, \"a\", \"b\", \"c\", 5]\r\nlet arr3Result = arr3.splice(3, 1, \"a\", \"b\", \"c\"); "
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Compare Scalar Array"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const arrayFirst = [1, 2, 3, 4, 5];\r\nconst arraySecond = [1, 2, 3, 4, 5];\r\nconsole.log(\r\n  arrayFirst.length === arraySecond.length &&\r\n  arrayFirst.every((value, index) => value === arraySecond[index])\r\n); // true\r\n"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "# Object"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "//Function Object constructed by Function constructor\r\nvar add = new Function(\"a\", \"b\", \"return a + b;\");\r\nconsole.log(add(1, 2));"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "3",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Getters and Setters"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const stock ={\r\n    _short:\"\",\r\n    get ticker(){\r\n        return this._short;\r\n    },\r\n    set ticker(str){\r\n        this._short = str;\r\n    }\r\n}\r\nstock.ticker=\"BHP\"\r\nconsole.log(stock.ticker)"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "BHP",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Object.Assign(target, ...source)"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const target = { a: 1, b: 2 };\r\nconst source = { b: 4, c: 5 };\r\n\r\nconst returnedTarget = Object.assign(target, source);\r\n\r\nconsole.log(target); //Object { a: 1, b: 4, c: 5 }\r\n\r\nconsole.log(returnedTarget);//Object { a: 1, b: 4, c: 5 }"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ a: 1, b: 4, c: 5 }",
+                                "{ a: 1, b: 4, c: 5 }",
+                                "[Object: null prototype] {}",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "markdown",
+            "source": [
+                "## Object.defineProperties()"
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "Object.defineProperty(obj, \"property1\", {\r\n  value: 50,\r\n  writable: true,\r\n  enumerable: true,\r\n  configurable: true, // This is allowed because 'configurable' is true\r\n});\r\n\r\nconsole.log(obj.property1); // Output: 50\r\n\r\n// Attempt to delete the property\r\ndelete obj.property1; // Allowed because 'configurable' is true\r\n\r\nconsole.log(obj.property1); // Output: undefined\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.error",
+                            "value": {
+                                "name": "ReferenceError",
+                                "message": "obj is not defined",
+                                "stack": "    at <Cell 10> [1, 0]\n    at <Cell 10> [12, 46]\n    at Script.runInContext (node:vm:148:12)\n    at Script.runInNewContext (node:vm:153:17)\n    at Object.runInNewContext (node:vm:309:38)\n    at C (c:\\Users\\KZhang\\.vscode\\extensions\\donjayamanne.typescript-notebook-2.0.6\\out\\extension\\server\\index.js:2:113345)\n    at t.execCode (c:\\Users\\KZhang\\.vscode\\extensions\\donjayamanne.typescript-notebook-2.0.6\\out\\extension\\server\\index.js:2:114312)\n    at k.<anonymous> (c:\\Users\\KZhang\\.vscode\\extensions\\donjayamanne.typescript-notebook-2.0.6\\out\\extension\\server\\index.js:2:142156)\n    at k.emit (node:events:519:28)\n    at k.emit (node:domain:488:12)"
+                            }
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const obj = {\r\n  a: 1,\r\n};\r\n\r\nObject.defineProperty(obj, \"b\", {\r\n  get() {\r\n    return [1, 2, 3];\r\n  },\r\n  enumerable: false,\r\n});\r\n\r\nconsole.log({ ...obj }); //{a: 1}, b does not appear because it's non-enumerable\r\nconsole.log(Object.keys(obj)); //[ 'a' ], b does not appear\r\n"
+            ],
+            "outputs": [
+                {
+                    "items": [
+                        {
+                            "mime": "application/vnd.code.notebook.stdout",
+                            "value": [
+                                "{ a: 1 }",
+                                "",
+                                ""
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "Object.values(obj) // [\"Alice\", 25]\r\nObject.entries(obj) // [[\"name\",\"Alice\"], [\"age\",25]]\r\nfor (let key in obj) console.log(key); // \"name\", \"age\""
+            ],
+            "outputs": []
+        },
+        {
+            "language": "javascript",
+            "source": [
+                "const make = 'Honda';\r\nconst model = 'Civic';\r\n\r\nconst car = {\r\n    make,    // Equivalent to: make: make\r\n    model    // Equivalent to: model: model\r\n};"
+            ],
+            "outputs": []
+        }
+    ]
+}

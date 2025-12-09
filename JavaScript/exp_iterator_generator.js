@@ -44,40 +44,15 @@ function generator_example() {
 
 // ----- Iterable Example -----
 function iterable_example() {
-  function* makeIterator() {
-    //generator function
-    yield 1;
-    yield 2;
-  }
-
-  const oneTimeIterable = makeIterator(); //an iterator is iterable
-  console.log(oneTimeIterable[Symbol.iterator]() == oneTimeIterable);
-
-  const repeatableIterable = {
-    [Symbol.iterator]: makeIterator,
+  const iterableObj = {
+    [Symbol.iterator]: function* () {
+      yield 1;
+      yield 2;
+    },
   };
 
-  for (let value of oneTimeIterable) {
+  for (let value of iterableObj) {
     console.log(value);
   }
 }
 iterable_example();
-
-function symbol_iterator() {
-  const obj = {
-    one: 1,
-    two: 2,
-    [Symbol.iterator]: function* () {
-      for (const key of Object.keys(this)) {
-        yield this[key];
-      }
-    },
-  };
-
-  const iterator = obj[Symbol.iterator]();
-
-  console.log(iterator.next()); // → {value: 1, done: false}
-  console.log(iterator.next()); // → {value: 2, done: false}
-  console.log(iterator.next()); // → {value: undefined, done: true}
-}
-symbol_iterator();
